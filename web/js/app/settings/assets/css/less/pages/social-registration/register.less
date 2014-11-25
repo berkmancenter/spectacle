@@ -1,0 +1,43 @@
+.page-social {
+    input[type=text],
+    input[type=email] {
+        background: #eee;
+        width: calc(~"100% - 20px");
+        box-shadow: none;
+        border-radius: 2px;
+        font-size: 14px;
+        height: 2em;
+
+        &.error {
+            border-color: red;
+        }
+    }
+
+    .username-validation {
+        .valid {
+            color: limegreen;
+        }
+        .invalid {
+            color: red;
+        }
+    }
+
+    .help-block {
+        font-family: "helvetica", sans-serif;
+        font-size: 12px;
+        color: #999
+    }
+
+    .submit {
+        border: 0;
+        display: block;
+        width: 100%;
+        background-color: limegreen;
+        color: white;
+        height: 55px;
+        font-family: "futura", sans-serif;
+        font-size: 18px;
+        margin-top: 20px;
+        cursor: pointer;
+    }
+}

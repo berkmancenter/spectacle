@@ -1,0 +1,34 @@
+{
+	{% if user is defined %}
+	"id" : {{ user.getId | json_encode | raw }},
+	"bio" : {{ user.getBio | default("") | json_encode | raw}},
+	"display_name" : {{ user.getDisplayName | json_encode | raw}},
+	{% if app.user and app.user.getId == user.getId %}
+	"email" : {{ user.email | default("") | json_encode | raw}},
+	{% endif %}
+	"username" : {{ user.username | default("") | json_encode | raw}},
+	"thumbnail_url" : {{ user.getThumbUrl | default(app.request.schemeAndHttpHost ~ "/images/default_profile.jpg") | json_encode | raw}},
+	"location" : {{ user.getLocation | json_encode | raw}},
+	"created_at" : "{{ user.getCreatedAt | date("Y-m-d") }}",
+	"locationLatitude" : {{ user.getLocationLatitude | json_encode | raw}},
+	"locationLongitude" : {{ user.getLocationLongitude | json_encode | raw}},
+	"editable" : {{ editable | json_encode | raw}},
+	"background_image_url" : {{ user.getBackgroundImageUrl | default("") | json_encode | raw}},
+	"notifications" : {
+		"email_on_favorite" : {{user.getEmailNotificationsOnFavorite | json_encode | raw}},
+		"email_on_popular" : {{user.getEmailNotificationsOnPopular | json_encode | raw}},
+		"email_on_feature" : {{user.getEmailNotificationsOnFeature | json_encode | raw}}
+	}	
+	{% if projects is defined %}
+	,"projects":
+	[
+		{% for project in projects %}
+			{% include 'ZeegaApiBundle:Projects:base.json.twig' with {'project': project, 'editable': editable} %}	
+			{%- if loop.index0 < projects|length - 1 -%}
+			,
+			{%- endif -%}
+	    {% endfor %}
+	]
+	{% endif %}
+	{% endif %}
+}

@@ -1,0 +1,17 @@
+<a href="#">
+    <div class="item-thumb">
+        <% if ( layer_type == "Audio" ) { %>
+            <div class="thumb-title"><%= title %></div>
+        <% } %>
+        <img class="browser-thumb <%= media_type %>" src="<%= thumbnail_url %>"
+            height="100%"
+            width="100%"
+            style="<%= style %>"
+
+        />
+    </div>
+    <div class="item-title">
+        
+        <span class="item-title-text"><%= title %></span>
+    </div>
+</a>

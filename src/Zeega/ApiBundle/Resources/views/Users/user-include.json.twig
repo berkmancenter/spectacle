@@ -1,0 +1,8 @@
+{
+    {% if user is defined and user is not empty %}
+    "id" : {{ user.id | json_encode | raw}},
+    "display_name" : {{ user.displayName | json_encode | raw}},
+    "username" : {{ user.username | default("") | json_encode | raw}},
+    "thumbnail_url" : {{ user.thumbUrl | default(app.request.schemeAndHttpHost ~ "/images/default_profile.jpg") | json_encode | raw}}
+    {% endif %}
+}

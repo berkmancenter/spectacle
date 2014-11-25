@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Zeega Editor</title>
+
+  <!-- Zeega metatags -->
+
+  <meta name="zeega" content="zeega-editor"
+    data-root="/"
+    data-hostname="//dev.zeega.com/"
+    data-user-id="36"
+    data-user-name="James Burns"
+    data-project-id="7037"
+    data-api-root="joseph/web/"
+    data-media-root="kinok/web/"
+    data-thumbnail-server="/"
+    data-fav-id= "5192b78a20d5cd1712000000"
+    data-new-user="0";
+  />
+
+
+
+
+  <!-- Application styles. -->
+
+  <!--(if target release)>
+  <link rel="stylesheet" href="release.css">
+  <!(endif)-->
+
+  <!--(if target debug)>
+  <link rel="stylesheet" href="debug.css">
+  <!(endif)-->
+
+  <!--(if target dummy)><!-->
+  <!--
+  <link rel="stylesheet" href="vendor/zeegaplayer/dist/debug/css/zeega.css">
+-->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!--<!(endif)-->
+</head>
+
+<body>
+  <!-- Main container. -->
+  <div role="main" id="main"></div>
+
+  <!-- Application source. -->
+
+  <!--(if target release)>
+  <script data-main="/app/config" src="source.min.js"></script>
+  <!(endif)-->
+
+<!--
+  <script src="dist/debug/require.js"></script>
+->
+  <!--(if target dummy)><!-->
+
+    <script data-main="/app/config" src="/vendor/js/libs/require.js"></script>
+<!--
+    <script src="/dist/debug/require.js"></script>
+-->
+  <!--<!(endif)-->
+</body>
+</html>

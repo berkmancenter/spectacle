@@ -1,0 +1,23 @@
+<!--
+<a href="<%= attr.attribution_uri %>" target="blank">
+    <i class="itemz-<%= attr.archive.toLowerCase() %>"></i>
+</a>
+-->
+<a href="<%= attr.attribution_uri %>" target="blank">
+  <dl>
+    <% if (attr.title) { %>
+    <dt>Title</dt>
+    <dd title="<%= attr.title %>"><%= attr.title %></dd>
+    <% } %>
+
+    <% if (attr.media_creator_realname) { %>
+    <dt>Creator</dt>
+    <dd title="<%= attr.media_creator_realname %>"><%= attr.media_creator_realname %></dd>
+    <% } %>
+
+    <% if (attr.description) { %>
+    <dt>Description</dt>
+    <dd title="<%= attr.description %>"><%= attr.description %></dd>
+    <% } %>
+  </dl>
+</a>

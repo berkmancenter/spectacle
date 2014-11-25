@@ -1,0 +1,57 @@
+{# Template to render items recursively. Supports arrays and doctrine entities. #}
+{# All the if clauses below are due to doctrine removing underscores from field names and entities #}
+{{ _self.show(item,editable) }}     {# Render the first item by making a call to the show(item) macro#}
+
+{% macro show(item, editable) %}    {# Item rendering macro/function #}
+    {% if item is not null %}
+    {
+        "id":{{ item.id | default(null) | json_encode | raw}},
+        "user": {% include 'ZeegaApiBundle:Users:user-include.json.twig' with {'user': item.user} %},
+        "title":{{ item.title | default("") | json_encode | raw}},
+        "headline":{{ item.headline | default("") | json_encode | raw}},
+        "description":{{ item.description | default("") | json_encode | raw}},
+        {% if item.text is defined and item.text is not empty and item.mediaType == 'project' %}
+            "text" : {{ item.text | raw}},
+        {% else %}
+            "text":{{ item.text | default("") | json_encode | raw}},
+        {%- endif -%}
+        "uri":{{ item.uri | default("") | json_encode | raw}},
+        "attribution_uri":{{ item.attributionUri | default("") | json_encode | raw}},
+        "date_created":"{{ item.dateCreated | default(null) | date("Y-m-d H:i:s") }}",
+        "media_type":{{ item.mediaType | default(null) | json_encode | raw }},
+        "layer_type":{{ item.layerType | default(null) | json_encode | raw }},
+        "archive":{{ item.archive | default(null) | json_encode | raw }},
+        "thumbnail_url":{{ item.thumbnailUrl | default(null) | json_encode | raw}},
+        "media_geo_latitude":{{ item.mediaGeoLatitude | default(null) | json_encode | raw}},
+        "media_geo_longitude":{{ item.mediaGeoLongitude | default(null) | json_encode | raw}},
+        "media_date_created":{{ item.mediaDateCreated | default(null) | date("Y-m-d H:i:s") | json_encode | raw }},
+        "media_creator_username":{{ item.mediaCreatorUsername | default(null) | json_encode | raw }},
+        "media_creator_realname":{{ item.mediaCreatorRealname | default(null) | json_encode | raw }},
+        "child_items_count":{{ item.childItemsCount | default(0) }},
+        "attributes":{{ item.attributes | default([ ]) | json_encode | raw}},
+        "child_items":
+        [
+            {%- if (item.childItems is defined) -%}
+                {% for child in item.childItems %}
+                    {# Item is a collection. Render the children by recursively calling the macro #}
+                    {{ _self.show(child) }}
+                    {%- if loop.index0 < item.childItems|length - 1 -%}
+                    ,
+                    {%- endif -%}
+                {% endfor %}
+            {%- endif -%}
+        ],
+        "tags":{{ item.tags | default([ ]) | json_encode | raw}},
+        {% if item.editable is defined %}
+        "editable":{{ isEditable(item.id, item.editable) | default(false) | json_encode | raw}},
+        {% else %}
+        "editable":{{ false | json_encode | raw}},
+        {%- endif -%}
+        "published":{{ item.published | default(false) | json_encode | raw}},
+        "enabled":{{ item.enabled | default(false) | json_encode | raw}},
+        "views":{{ item.views | default(0) | json_encode | raw}}
+    }
+    {% else %}
+        {}
+    {% endif %}
+{% endmacro %}

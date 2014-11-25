@@ -1,0 +1,7 @@
+parameters:
+#    zeega_social.example.class: Zeega\SocialBundle\Example
+
+services:
+    zeega.social.user_provider:
+        class: Zeega\SocialBundle\Security\User\Provider\SocialProvider
+        arguments: [@fos_user.user_manager,{twitter: twitter_id, facebook: facebook_id}]

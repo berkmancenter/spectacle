@@ -1,0 +1,182 @@
+.ZEEGA-player-menu-bar {
+    pointer-events:auto;
+    position: absolute;
+    width: 100%;
+    z-index: 11;
+
+    a {
+        cursor: pointer;
+    }
+
+    .btnz {
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: none;
+        border: 2px solid rgba(0, 0, 0, 0.5);
+        color: rgba(0, 0, 0, 0.6);
+        text-shadow: none;
+        padding: 8px 14px;
+        border-radius: 4px;
+
+        i {
+            opacity: 0.6;
+            vertical-align: -3px;
+        }
+
+        &:hover {
+            color: orangered;
+            border-color: orangered;
+        }
+
+        &.favorited {
+            padding: 8px;
+            background: orangered;
+            border-radius: 50px;
+
+            .content {
+                display: none;
+            }
+
+            i {
+                opacity: 1;
+                background-image: url("../img/glyphicons-halflings-white.png");
+            }
+        }
+
+        &.btnz-join {
+            margin-left: 10px;
+        }
+
+        &.btn-remix {
+            background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,0,102,1)), color-stop(100%,rgba(66,255,251,1)));
+            transition: all 0.5s;
+            min-width: 52px;
+            color: white;
+        }
+
+        &.remix-endpage {
+            background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,0,102,1)), color-stop(100%,rgba(66,255,251,1)));
+            width: 300px;
+            border-color: white;
+            color: white;
+            min-width: 125px;
+
+            transition: all 0.5s;
+
+            i {
+                opacity: 1;
+            }
+
+            &:hover {
+                transition: all 0.5s;
+                background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,0,102,1)), color-stop(100%,rgba(255,255,0,1)));
+            }
+        }
+    }
+
+    .menu-right {
+        float: right;
+        margin-top: 12px;
+        margin-right: 10px;
+
+        a {
+            display: inline-block;
+            margin-top: 0;
+            float: left;
+            margin-right: 10px;
+        }
+
+        ul {
+            float: left;
+
+            li {
+                float: left;
+            }
+
+            &:first-child {
+                margin-right: 20px;
+            }
+        }
+    }
+
+    .social-share-icon {
+        opacity: 0.8;
+        .transition( opacity, 0.5s );
+        &:hover {
+            opacity: 1;
+            .transition( opacity, 0.5s );
+        }
+    }
+}
+
+.btnz {
+    background-color: rgba(0,0,0,0.5);
+    .transition( background-color, 0.5s );
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 2px;
+    background-image: url(../img/tiny-stripes.png);
+    margin-top: 12px;
+    position: relative;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+    font-family: "futura", sans-serif;
+    font-size: 13px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.75), 0px -1px 0px rgba(0,0,0,0.75);
+
+    &:hover {
+        text-shadow: none;
+        background-color: rgba(255,255,255,0.75);
+        .transition( background-color, 0.5s );
+        box-shadow: inset 2px 2px 5px rgba(0,0,0,0.5);
+    }
+}
+
+.ZEEGA-sound-state {
+    background: transparent;
+    background-repeat: no-repeat;
+    background-image: url(../img/sounds-sprite.png);
+    background-position: 0 0px;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 0 0 2px 2px;
+    z-index: 2;
+    background-size: 30px 150px;
+    right: 20px;
+    top: 20px;
+
+    &.muted{
+        background-position: 0px -30px;
+    }
+
+    &.loading-0{
+        background-position: 0px -60px;
+    }
+    &.loading-1{
+        background-position: 0px -90px;
+    }
+    &.loading-2{
+        background-position: 0px -120px;
+    }
+
+}
+
+.btnz.explore-zeega {
+    background-image: url(../img/tiny-stripes-dark.png);
+    position: fixed;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    height: 1em;
+    width: 550px;
+    text-align: center;
+    background-color: rgba(255,69,0, 0.5);
+    font-size: 3em;
+
+    &:hover {
+        color: white;
+        background-color: rgba(255,69,0, 1);
+    }
+}

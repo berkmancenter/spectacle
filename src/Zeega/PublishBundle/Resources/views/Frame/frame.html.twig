@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title>Frame Viewer</title>
+		<meta name="robots" content="noindex,follow">
+		<link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+		<meta name="robots" content="noindex,follow">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script> 
+			sessionStorage.setItem('directory', '{{directory}}');
+			sessionStorage.setItem('hostname','{{hostname}}');
+			sessionStorage.setItem('frameId','{{frameId}}');
+		</script>
+		
+		
+		<style type="text/css">
+			body
+			{
+				padding:0;
+				margin:0;
+				background:#000000;
+			}
+		</style>
+
+
+		
+		<!--
+		<script data-main="{{ asset('js/loaders/frame.js')}}" src="{{ asset('js/lib/require.js')}}"></script>
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		-->
+		<script type="text/javascript" language="Javascript">
+			var frameJSON = "{{ frame | e('js') }}";
+			{%set content%}
+                            [
+                            {% for layer in layers %}
+				{% include 'ZeegaApiBundle:Layers:show.json.twig' with {'layer': layer} %}	
+				{%- if loop.index0 < layers|length - 1 -%}
+				,
+				{%- endif -%}
+		            {% endfor %}
+                            ]
+                        {% endset %}
+                        var layersJSON = "{{content | e('js')}}";
+		</script>
+		<script type="text/javascript" language="Javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" language="Javascript" src="{{ asset('js/lib/underscore.js')}}"></script>	
+		<!--<script type="text/javascript" language="Javascript" src="{{ asset('js/lib/backbone.js')}}"></script>-->	
+		<script type="text/javascript" language="Javascript" src="{{ asset('js/app/zeega.frame-player.js')}}"></script>	
+	</head>
+
+	<body>
+		<div id="zeega-player" style="position:absolute;overflow:hidden;width:600px; height:400px"></div>
+	</body>
+
+</html>

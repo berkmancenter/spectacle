@@ -1,0 +1,323 @@
+.ZEEGA-player-citations {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 11;
+    pointer-events: auto;
+    .clearfix;
+
+    a {
+        cursor: pointer;
+    }
+
+    .citation-meta {
+        font-size: 11px;
+        clear: both;
+        margin-top: 5px;
+
+        .citation-title {
+            position: relative;
+            top: 10px;
+        }
+    }
+
+    .citation-soundtrack {
+        height: 55px;
+        width: 55px;
+        float: right;
+        display: none;
+        border: 0px solid orangered;
+        border-radius: 2px;
+        position: relative;
+        margin-right: 22px;
+
+        .citation-trackback {
+            position: absolute;
+            left: 13px;
+            bottom: -26px;
+        }
+
+        .play-pause {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+
+            .pp-btn {
+                background: url(../img/audio-sprites.png);
+                background-size: 25px 125px;
+                background-position: 0 -25px;
+                position: absolute;
+                margin: auto;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                height: 25px;
+                width: 25px;
+                opacity: 1;
+
+                &.pause {
+                    background-position: 0 0;
+                }
+
+                &:hover {
+                    opacity: 0.85;
+                }
+            }
+        }
+    }
+
+    .ZEEGA-fullscreen {
+        position: absolute;
+        background-image: url(../img/fullscreen.png);
+        background-size: 20px;
+        background-repeat: no-repeat;
+        width: 20px;
+        height: 20px;
+        right: 10px;
+        opacity: 0.75;
+        .transition( opacity, 0.5s );
+        &:hover {
+            opacity: 1;
+            .transition( opacity, 0.5s );
+        }
+    }
+
+    .ZEEGA-home {
+        position: relative;
+        background-image: url(../img/restart.png);
+        background-size: 45px;
+        background-repeat: no-repeat;
+        width: 45px;
+        height: 45px;
+        float: right;
+        display: none;
+        opacity: 0.75;
+        .transition( opacity, 0.5s );
+        &:hover {
+            opacity: 1;
+            .transition( opacity, 0.5s );
+        }
+        // img {
+        //     width: 100%;
+        // }
+    }
+}
+
+.remix-meta {
+    position: relative;
+    .clearfix;
+    .remix-tab {
+        background-image: url(../img/remix-corner.png);
+        height: 75px;
+        width: 75px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        float: left;
+        opacity: 0.8;
+    }
+
+    .remix-bg {
+        position: absolute;
+        float: left;
+        height: 100%;
+        width: 100%;
+        &.remix-bg-whole {
+
+        }
+
+        &.remix-bg-half {
+            width: 50%;
+            &:nth-child(2) {
+                left: 50%;
+            }
+        }
+    }
+
+    .remix-trail {
+        position: absolute;
+        bottom: 5px;
+
+        li {
+            opacity: 0;
+            transition: opacity 0.5s;
+            -webkit-transition: opacity 0.5s;
+            &.show {
+                opacity: 1;
+                transition: opacity 0.5s;
+                -webkit-transition: opacity 0.5s;
+            }
+        }
+    }
+
+    .remix-project-flag {
+        background-image: url(http://zeegadev.s3.amazonaws.com/386b0e3bb50b9445cb0a3ed3a52eeb4f_7.jpg);
+        background-size: cover;
+        width: 200px;
+        height: 200px;
+        border: 2px solid white;
+        position: absolute;
+        bottom: 15px;
+        z-index: 4;
+        left: 20px;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.75);
+
+        .text-overlay {
+            color: black;
+            background: white;
+            display: inline-block;
+            padding: 2px;
+            margin: 10px 10px 5px 10px;
+            font-family: "futura", sans-serif;
+            font-size: 13px;
+            z-index: 2;
+            position: relative;
+        }
+    }
+
+
+    
+}
+
+.ZEEGA-chrome-metablock {
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1;
+    border-top: 1px solid #222;
+
+    a {
+        color: orangered;
+    }
+    
+    .meta-inner {
+        padding: 10px 20px;
+        .clearfix;
+    }
+
+    .left-col {
+        .clearfix;
+        float:left;
+        width: 70px;
+        margin: 0 10px 10px 0;
+        font-size: 11px;
+        text-align: center;
+
+        .username {
+            position: absolute;
+            bottom: 7px;
+            height: 11px;
+            width: 70px;
+            overflow: hidden;
+        }
+
+        .counts {
+            & > * {
+                white-space: nowrap;
+                opacity: 0.75;
+                .transition( opacity, 0.5s );
+            }
+
+            &:hover {
+                opacity: 1;
+                .transition( opacity, 0.5s );
+            }
+
+            .zeega-favorite_count {
+                height: 15px;
+            }
+
+            .zeega-views {
+                i {
+                    position: relative;
+                    top: -2px;
+                }
+
+            }
+        }
+    }
+
+    .right-col {
+        float: left;
+        width: 300px;
+        min-height: 20px;
+
+        .caption {
+            line-height: 1.1em;
+            font-size: 13px;
+            word-wrap: break-word;
+        }
+    }
+
+    .favorite {
+        float:left;
+        display: none;
+
+        .btnz{
+            background: transparent;
+            border: 1px solid #666;
+            box-shadow: none;
+            padding: 5px 20px;
+            bottom: 10px;
+            position: absolute;
+            color: #ddd;
+
+            &:hover{
+                background-color: orangered;
+                box-shadow: 0 0 15px rgba(255,255,255,0.5);
+            }
+            &.favorited{
+                background-color: orangered;
+                background-image:none;
+            }
+        }
+    }
+
+    .citations {
+        float: left;
+        width: 75%;
+        padding: 0px 8px;
+        border: 1px dotted orangered;
+        border-width: 0 1px;
+        overflow-x: auto;
+        white-space: nowrap;
+        max-height: 103px;
+
+        ul {
+            li {
+                display: inline-block;
+                width: 20%;
+                overflow-y: hidden;
+                min-width: 300px;
+                background: rgba(24, 24, 24, 0.90);
+                padding: 5px 10px;
+                font-size: 0.7em;
+                height: 73px;
+                margin: 0 5px;
+
+                &:hover  {
+                  background: rgba(44, 44, 44, 0.90);
+                }
+
+                a {
+                    color: white;
+                }
+                
+                dt {
+                    margin-bottom: 0.2em;
+                    color: orangered;
+                }
+                dd {
+                    margin-left: 1em;
+                    overflow-x: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    margin-bottom: 0.2em;
+                    font-size: 0.9em;
+                }
+            }
+        }
+    }
+}

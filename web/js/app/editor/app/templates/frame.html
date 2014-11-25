@@ -1,0 +1,22 @@
+<div class="frame-menu tooltip"
+    title="delete page"
+    data-gravity="n"
+>
+    <a href="#" class="action tooltip" data-action="deleteFrame">
+        <i class="icon-trash icon-white"></i>
+    </a>
+</div>
+
+<a href="#" class="frame-thumb"
+    data-id="<%= id %>"
+    style="
+        <% if( thumbnail_url !== "" ) { %>
+            background-image: url(<%= thumbnail_url %>); 
+            background-repeat: no-repeat;
+            background-position: center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        <% } %>
+"></a>

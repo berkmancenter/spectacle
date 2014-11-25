@@ -1,0 +1,39 @@
+<div class="cover" 
+    <% if ( background_image_url != "") { %>
+        style ="background-image:url(<%= background_image_url %>)" 
+    <% } %>
+>
+    <div class="profile-token-large" 
+        <% if ( thumbnail_url !="") { %>
+        style="background-image:url(<%= thumbnail_url %>)"
+        <% } %>
+    ></div>
+
+    <span class="headline">
+        <h2 class="display-name"><%= display_name %></h2>
+        <h3 class="username"><small>@<%= username %></small></h3>
+        <p class="bio"><%= bio %></p>
+    </span>
+
+    <% if ( editable ) { %>
+        <ul class="bottom-menu">
+            <li>
+                <a href="#" class="edit-bio btnz btnz-light">edit profile</a>
+            </li>
+            <li>
+                <a href="#" class="save-bio btnz btnz-green">save</a>
+            </li>
+            <li>
+                <a href="/settings" data-bypass="true" class="settings"></a>
+            </li>
+        </ul>
+    <% } %>
+
+</div>
+
+<% if ( editable ) { %>
+    <div class="profile-image-inputs">
+        <i class="icon-chevron-left"></i> Profile Image <input type="file" class="profile-image" name="profile-image" size="chars">
+        <i class="icon-chevron-up"></i> Background Image <input type="file" class="background-image" name="background-image" size="chars"> 
+    </div>
+<% } %>

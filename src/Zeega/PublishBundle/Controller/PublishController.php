@@ -1,0 +1,217 @@
+<?php
+
+/*
+* This file is part of Zeega.
+*
+* (c) Zeega <info@zeega.org>
+*
+* For the full copyright and license information, please view the LICENSE
+* file that was distributed with this source code.
+*/
+
+namespace Zeega\PublishBundle\Controller;
+
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Zeega\CoreBundle\Controller\BaseController;
+
+class PublishController extends BaseController
+{
+    public function frameAction($projectId, $frameId)
+    {
+        $frameAndLayers = $this->getDoctrine()->getRepository('ZeegaDataBundle:Project')->findProjectFrameWithLayers($projectId, $frameId);
+        $frameView = $this->renderView('ZeegaApiBundle:Frames:show.json.twig', array('frame' => $frameAndLayers['frame']));
+
+        return $this->render('ZeegaPublishBundle:Frame:frame.html.twig', array(
+            'frameId'=> $frameAndLayers['frame']->getId(),
+            'frame'=>$frameView,
+            'layers'=>$frameAndLayers['layers']
+        ));
+    }
+     
+    public function projectAction($id)
+    {   
+        $mobileDetector = $this->get('mobile_detect.mobile_detector');
+
+        if( $mobileDetector->isMobile() || $mobileDetector->isTablet()){
+            $mobile = true;
+        } else {
+            $mobile = false;
+        }
+
+        $project = $this->getDoctrine()->getRepository('ZeegaDataBundle:Project')->findOneById($id);
+
+        if (null === $project) {
+            throw $this->createNotFoundException('The project with the id $id does not exist or is not published.');
+        }
+        
+        // favorites begin - changes here should be replicaded on api/projects/:id
+        $user = $this->getUser();
+        $favorite = false;
+        if ( isset($user) ) {
+            $favorite = $this->getDoctrine()->getRepository('ZeegaDataBundle:Favorite')->findOneBy(array(
+                'user.id' => $user->getId(),
+                'project.id' => $project->getId()));
+            $favorite = isset($favorite);
+        }
+        // favorites end
+        
+        // render views to bootstrap data for the player
+        // - if the project is a remix -> load the root project
+        // - if the project is not a remix -> load the project
+        $rootProject = $project->getRootProject();
+        $ancestors = $project->getAncestors();
+
+        if ( isset($rootProject) && isset($ancestors) ) {            
+            foreach ($ancestors as $ancestor) {
+                if($ancestor->getId() != $rootProject->getId()) {
+                    $rootProject->addDescendant($ancestor);    
+                }                
+            }
+            
+            $rootProject->addDescendant($project);
+            $project = $rootProject;
+        } 
+
+        $relatedProjects = $this->getDoctrine()->getRepository('ZeegaDataBundle:Project')->findRelated($project->getId());
+        $projectData = $this->renderView('ZeegaApiBundle:Projects:show.json.twig', array(
+            'project' => $project,
+            'favorite' => $favorite
+        ));
+
+        $relatedProjectsData = $this->renderView('ZeegaApiBundle:Projects:index.json.twig', array(
+                'projects' => $relatedProjects,
+                'request' => null
+            ));
+
+
+        $isProjectMobile = $project->getMobile();
+        $projectVersion = $project->getVersion();
+
+        // Increment the view count here instead of through the event logger 
+        $dm = $this->get('doctrine_mongodb')->getManager();        
+        $project->setViews($project->getViews() + 1);
+        $dm->persist($project);
+        $dm->flush();
+        
+        if ( null === $projectVersion ) {
+            $projectVersion = 1;    
+        }
+
+        if ( $mobile ) {
+            if ( $projectVersion == 1.2) {
+                return $this->render('ZeegaPublishBundle:Player:mobile_player.html.twig', array(                    
+                    'project'=>$project,
+                    'related_projects_data'=>$relatedProjectsData,
+                    'project_data' => $projectData
+                                  
+                ));            
+            } else if( $projectVersion == 1.1 ) {
+                return $this->render('ZeegaPublishBundle:Player:mobile_player_1_1.html.twig', array(                    
+                    'project'=>$project,
+                    'related_projects_data'=>$relatedProjectsData,
+                    'project_data' => $projectData     
+                ));            
+            } else if ( $projectVersion == 1 ) {                
+                if( $isProjectMobile ) {
+                    
+                    return $this->render('ZeegaPublishBundle:Player:mobile_player_1_0.html.twig', array(
+                        'project'=>$project,
+                        'project_data' => $projectData                
+                    ));
+                } else {
+
+                    return $this->render('ZeegaPublishBundle:Player:mobile_not_supported.html.twig', array(
+                        'project'=>$project                
+                    ));                    
+                }
+            } else{
+                throw new \Exception("This project doesn't exist or cannot be played");
+            }
+        } else {
+            if ( $projectVersion == 1.2 ) {
+                return $this->render('ZeegaPublishBundle:Player:player.html.twig', array(
+                    'project'=>$project,
+                    'related_projects_data'=>$relatedProjectsData,
+                    'project_data' => $projectData
+                ));
+            } else if ( $projectVersion == 1.1 ) {
+                return $this->render('ZeegaPublishBundle:Player:player_1_1.html.twig', array(
+                    'project'=>$project,
+                    'related_projects_data'=>$relatedProjectsData,
+                    'project_data' => $projectData
+                ));
+            } else if ( $projectVersion == 1 ) {
+                return $this->render('ZeegaPublishBundle:Player:player_1_0.html.twig', array(
+                    'project'=>$project,
+                    'project_data' => $projectData,
+                    'related_projects_data'=>null,
+                ));
+            } else{
+                throw new \Exception("This project doesn't exist or cannot be played");
+            }
+        }
+    }
+    
+    public function projectRemixAction($id)
+    {   
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $project = $dm->getRepository('ZeegaDataBundle:Project')->findOneById($id);
+        
+        if ( !isset($project) ) {
+            throw new \Exception("The project with the id $id does not exist.");
+        }
+
+        $user = $this->getUser();
+        if ( !isset($user) ) {
+            throw new \Exception('You need to be logged in to remix a project.');
+        }
+
+        $isRemixable = $project->getRemixable();
+
+        if ( $isRemixable || $this->isUserAdmin( $user ) || $this->isUserAdmin( $project->getUser() ) ) {
+            $newProject = $this->get('zeega.project')->createRemixProject(1, $project, $user);
+        
+            return $this->redirect($this->generateUrl("ZeegaEditorBundle_editor", array("id"=>$newProject->getPublicId()), true), 301);  
+        }
+        
+        throw new \Exception('This project cannot be remixed.');
+    }
+
+    public function embedAction ($id)
+    {
+
+        $mobileDetector = $this->get('mobile_detect.mobile_detector');
+
+        if( $mobileDetector->isMobile() || $mobileDetector->isTablet()){
+            $mobile = true;
+        } else {
+            $mobile = false;
+        }
+
+        if($mobile){
+                $response = $this->forward('ZeegaPublishBundle:Publish:project', array('id' => $id));
+                return $response;
+        }
+
+
+        $project = $this->getDoctrine()->getRepository('ZeegaDataBundle:Project')->findOneById($id);
+        $projectData = $this->renderView('ZeegaApiBundle:Projects:show.json.twig', array('project' => $project)); 
+        
+        if (null === $project || null === $projectData) {
+            throw $this->createNotFoundException('The project with the id $id does not exist or is not published.');
+        }
+        
+        $projectVersion = $project->getVersion(); 
+
+        if ( $projectVersion < 1.1) {
+            return $this->render('ZeegaPublishBundle:Player:embed_1_0.html.twig', array('project'=>$project));
+        } else if( $projectVersion == 1.1 ) {
+            return $this->render('ZeegaPublishBundle:Player:embed_1_1.html.twig', array('project'=>$project ));
+        } else {
+            return $this->render('ZeegaPublishBundle:Player:embed.html.twig', array('project'=>$project ));
+        }
+    }
+}
+
+

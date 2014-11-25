@@ -1,0 +1,28 @@
+ZeegaCommunityBundle_home:
+    pattern:  /
+    defaults: { _controller: ZeegaCommunityBundle:Community:home }
+
+ZeegaCommunityBundle_tag:
+    pattern:  /tag/{tag}
+    defaults: { _controller: ZeegaCommunityBundle:Community:tag }
+
+ZeegaCommunityBundle_user_id:
+    pattern:  /profile/{id}
+    defaults: { _controller: ZeegaCommunityBundle:Community:user }
+
+ZeegaCommunityBundle_profile:
+    pattern:  /@{username}
+    defaults: { _controller: ZeegaCommunityBundle:Community:profile }
+    schemes:  [https]
+
+ZeegaCommunityBundle_dashboard:
+    pattern:  /dashboard
+    defaults: { _controller: ZeegaCommunityBundle:Community:dashboard}
+
+ZeegaCommunityBundle_notfound:
+    pattern:  /notfound
+    defaults: { _controller: ZeegaCommunityBundle:Community:notfound}
+
+ZeegaCommunityBundle_about:
+    pattern: /about
+    defaults: { _controller: ZeegaCommunityBundle:Community:about}

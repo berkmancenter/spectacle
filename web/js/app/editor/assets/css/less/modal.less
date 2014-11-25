@@ -1,0 +1,97 @@
+@smallArrowColor: #fff;
+@smallArrowHoverColor: orange;
+@smallArrowOpacity: 0.5;
+@smallArrowHoverOpacity: 1;
+@smallArrowThickness: 5px;
+@smallArrowSize: 30px;
+
+.ZEEGA-modal {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.75);
+    z-index: 100;
+    top: 0;
+
+    .modal-close {
+        font-size: 3em;
+        right: 10px;
+        position: absolute;
+        z-index: 100;
+    }
+
+    .modal-content {
+        width: 600px;
+        height: 400px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+
+        .modal-title {
+            color: white;
+            font-family: "futura", sans-serif;
+            font-size: 1.5em;
+            padding: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 5px 10px;
+            border-radius: 2px;
+        }
+
+        .modal-body {
+            position: relative;
+            background: white;
+            min-height: 120px;
+            border-radius: 5px;
+            margin-top: 10px;
+            padding: 20px;
+        }
+    }
+
+    .arrow-left {
+        left: -40px !important;
+    }
+
+    .arrow-right {
+        right: -40px !important;
+    }
+
+    .arrow {
+        .nav-arrow ( @smallArrowSize, @smallArrowThickness, @smallArrowColor, @smallArrowHoverColor, @smallArrowOpacity, @smallArrowHoverOpacity );
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        z-index: 2;
+    }
+
+}
+
+
+
+.bookmarklet-modal {
+
+    .small {
+        font-size: 13px;
+    }
+
+    .bm-instructions {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+    }
+
+    .bmLink {
+        text-align: center;
+        a {
+            text-decoration: underline;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #FF0001;
+        }
+    }
+}

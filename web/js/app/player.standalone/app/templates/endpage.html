@@ -1,0 +1,25 @@
+<div class="end-page-wrapper" >
+    <h2>Explore More Zeegas</h2>
+<% _.each(projects, function( project ) { %>
+    <div class="suggested-zeega">
+
+        <div class="top"><%= project.user.display_name%></div>
+
+        <a href="<%=path %><%= project.id %>"
+                class="middle zeega-thumb play-next"
+                data-id="<%= project.id %>"
+                data-bypass="true"
+                style="background-image: url(<%= project.cover_image %>);">
+
+            <div class="profile-token"
+                    style="background-image: url(<%= project.user.thumbnail_url %>);
+                            background-size: cover;
+                            background-position: center;"></div>
+            <span class="playbutton"></span>
+        </a>
+
+        <div class="bottom"><%= project.title %></div>
+    </div>
+<% }); %>
+
+</div>

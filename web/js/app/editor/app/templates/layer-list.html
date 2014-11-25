@@ -1,0 +1,24 @@
+<div class="layer-marker">
+
+<% if ( !attr.thumbnail_url ) { %>
+    <div class="layer-list-top">
+        <span class="layer-title"><%= attr.title %></span>
+    </div>
+<% } %>
+
+    <div class="layer-list-bottom clearfix">
+        <a href="#" class="action-bg pull-right tooltip"
+            title="delete layer"
+            data-gravity="e"
+        ><i data-action="deleteLayer" class="action icon-trash icon-white"></i></a>
+    </div>
+</div>
+
+<% if ( attr.thumbnail_url ) { %>
+    <div class="layer-list-bg"
+        style="
+            background: url(<%= attr.thumbnail_url %>);
+            background-size: cover;
+        "
+    ></div>
+<% } %>

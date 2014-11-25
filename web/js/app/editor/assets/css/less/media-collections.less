@@ -1,0 +1,125 @@
+.media-drawer.list {
+    .media-collection {
+        background: #111;
+    }
+}
+
+.media-collection {
+    position: relative;
+    background: #111;
+    height: 100%;
+    overflow:hidden;
+
+    .search-box {
+        border-radius: 2px;
+        border: none;
+        padding: 4px;
+        width: 206px;
+        margin: 0;
+    }
+
+    .submit {
+        float: right;
+        cursor: pointer;
+    }
+
+    .search-bar{
+        margin-top:5px;
+    }
+    
+    .media-collection-header {
+        position: relative;
+        z-index:1;
+        width: 285px;
+        background: @interfacePrimary;
+        padding: 5px 10px;
+        color: white;
+        font-size: 18px;
+        .clearfix;
+
+        .media-collection-extras{
+            float:right;
+        }
+        .media-collection-title{
+            float:left;
+
+        }
+        .get-bookmarklet {
+            font-size: 12px;
+            color: white;
+            
+        }
+        .upload-images{
+            font-size: 12px;
+            color: white;
+            padding-right:10px;
+        }
+        .media-collection-search {
+            clear:both;
+            display:none;
+        }
+
+        .media-collection-headline {
+            p{
+                font-family: "PT Sans", sans-serif;
+                font-size: 15px;
+                margin: 0;
+                padding-top:5px;
+            }
+        }
+
+
+        
+
+    }
+
+    .media-collection-wrapper {
+
+        position:relative;
+        height:100%;
+    }
+    .media-collection-container {
+        top:0;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .media-collection-items {
+        .clearfix;
+        position: relative;
+        padding-bottom:150px;
+        
+
+        img {
+            border:  1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .media-more {
+
+            height: 50px;
+            width: 50px;
+            float: left;
+            background: red;
+
+            a {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            .item-label {
+                color: white;
+                text-align: center;
+                margin-top: 5px;
+            }
+            i {
+                margin: 0 auto;
+                display: block;
+            }
+        }
+    }
+}

@@ -1,0 +1,102 @@
+{% extends "FOSUserBundle:Registration:register_base.html.twig" %}
+
+{% block style %}
+        <style>
+
+            html, body {
+                width: 100%;
+            }
+
+            body {
+                background: url({{ asset('images/register/tiny-stripes.png')}};
+                height: auto;
+                width: auto;
+            }
+
+            fieldset {
+                border: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                font-family: "Futura", sans-serif;
+                font-weight: normal;
+            }
+
+            h2 {
+                margin: 10px 0;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .container-inner {
+                background: rgba(255,255,255,0.85);
+                background-image: url({{ asset('images/register/tiny-stripes.png')}});
+                border: 1px solid white;
+                margin: 0 auto;
+                margin-top: 40px;
+                padding: 20px;
+                border-radius: 2px;
+            }
+
+            .btnz {
+                font-size: 1em;
+                width: auto;
+                display: block;
+            }
+
+            .container h1,
+            .container h3 {
+                margin: 0 0 20px 0;
+            }
+
+            .col-middle {
+                text-align: center;
+            }
+
+            .col-left .btnz {
+                display: block;
+                padding-bottom: 18px;
+                text-align: left;
+                margin-bottom: 10px
+            }
+
+
+            input {
+                display: block;
+                width: -calc(100% - 21px);
+                width: -webkit-calc(100% - 21px);
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                font-size: 1.1em;
+                padding: 5px 10px;
+                border-radius: 2px;
+            }
+
+            .login-link {
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+
+            .login-link img {
+                width: 100%;
+            }
+
+            .fine-print {
+                font-size: 10px;
+                color: #999;
+            }
+            .errors ul {
+                width: 300px ;
+                color: red;
+            }
+
+            .lower {
+                display: none;
+            }
+
+        </style>
+    {% endblock %}

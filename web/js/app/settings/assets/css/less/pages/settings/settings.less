@@ -1,0 +1,48 @@
+.content-wrapper {
+    background: white;
+    padding: 20px;
+    border: 2px solid #e3e7e8;
+    border-radius: 4px;
+
+    .help-block {
+        font-family: "helvetica", sans-serif;
+        font-size: 12px;
+        color: #999
+    }
+
+    input {
+        background: #eee;
+        width: calc(~"100% - 16px");
+        box-shadow: none;
+        border-radius: 2px;
+        font-size: 14px;
+        height: 2em;
+
+        &.error {
+            border-color: red;
+        }
+    }
+
+    .half-width {
+        width: 50%;
+        float: left;
+    }
+
+    .settings-submit {
+        width: calc(~"100% - 20px");
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin-top: 20px;
+        font-size: 22px;
+        height: auto;
+    }
+
+    .username-validation {
+        .valid {
+            color: limegreen;
+        }
+        .invalid {
+            color: red;
+        }
+    }
+}

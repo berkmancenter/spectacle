@@ -1,0 +1,8 @@
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+node_modules
+index.html
+index_test.html
+assets/css/amm.css
+.htaccess

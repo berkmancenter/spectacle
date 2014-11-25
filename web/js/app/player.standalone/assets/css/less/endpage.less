@@ -1,0 +1,115 @@
+.ZEEGA-end-page{
+    display: none;
+    position: absolute;
+    width: 100%;
+    top:40%;
+    z-index: 10;
+    .btnz.explore-zeega {
+        background-image: url(../img/tiny-stripes-dark.png);
+        position: fixed;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        height: 1em;
+        width: 550px;
+        text-align: center;
+        background-color: rgba(255,69,0, 0.5);
+        font-size: 3em;
+
+        &:hover {
+            color: white;
+            background-color: rgba(255,69,0, 1);
+        }
+    }
+    h2 {
+        font-family: "futura", sans-serif;
+        color:white;
+        text-align: left;
+        font-size: 2em;
+        margin-bottom: 20px;
+
+    }
+
+    .end-page-wrapper{
+        margin: -117px auto 0 auto;
+        width: 620px;
+    }
+
+
+
+
+    .suggested-zeega {
+        float: left;
+        font-size: 11px;
+        color: white;
+        width: 300px;
+
+        &:nth-child(2) {
+            margin-right: 20px;
+        }
+
+        .top {
+            margin-left: 62px;
+            position: relative;
+            top: -5px;
+        }
+
+        .zeega-thumb {
+            background-size: cover;
+            background-position: center;
+            display: block;
+            height: 196px;
+            border: 2px solid white;
+            position: relative;
+            border-radius: 4px;
+
+            .profile-token {
+                border-color: white;
+                position: absolute;
+                top: -22px;
+                left: 10px;
+            }
+
+            &:hover {
+                border-color: orangered;
+                .profile-token {
+                    border-color: orangered;
+                }
+            }
+
+            .playbutton{
+                opacity:0.8;
+                width: 50px;
+                height: 50px;
+                display: block;
+                top: 40px;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                border-radius: 50px;
+                padding: 5px 5px 3px 5px;
+                background-image: url(../img/playbutton.png);
+                background-position: center;
+                background-size: 93%;
+                background-repeat: no-repeat;
+                &:hover{
+                    opacity:1;
+                }
+            }
+        }
+
+        .bottom {
+            padding: 10px;
+            color: white;
+            margin-top: 3px;
+        }
+
+    }
+
+}

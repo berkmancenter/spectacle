@@ -1,0 +1,170 @@
+{% if project.thumbnailUrl is defined and project.thumbnailUrl is not empty %}
+    {% set thumbnailUrl = project.thumbnailUrl %}
+{% elseif project.coverImage is defined and project.coverImage is not empty %}
+    {% set thumbnailUrl = project.coverImage %}
+{% else %}
+    {% set thumbnailUrl = "http://zeega.com/images/default_cover.png" %}
+{% endif %}
+<!doctype html>
+<html>
+	<head>
+		
+        {% include "ZeegaPublishBundle:Player:meta.html.twig" %}
+
+        <link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>    
+		<style type="text/css">
+			body {
+					margin:0px
+					width: 100%;
+					height: 100%;
+			}
+
+			html {
+				font-family: "Helvetica", sans-serif;
+				background: url({{thumbnailUrl}}) no-repeat center center fixed;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				color:white;
+			}
+		
+    		.info-overlay{
+		        position: absolute;
+		        bottom: 0;
+		        left: 0;
+		        right: 0;
+		        background: rgba(0, 0, 0, 0.5);
+		        overflow-x:hidden;
+		        padding: 10px;
+		        border-radius: 0 0 2px 2px;
+		        color: white;
+		        text-shadow: rgba(0, 0, 0, 0.498039) 2px 2px 12px;
+		    }
+
+	        .left-column{
+	            float:left;
+	            margin-right: 10px;
+	        }
+            .profile-token{
+                border-radius: 28px;
+                height: 50px;
+                width: 50px;
+                overflow: hidden;
+                float: left;
+                border: 3px solid orangered;
+                
+            }
+
+            .profile-token img {
+                    width: 100%;
+            }
+       
+                    
+        
+	        .right-column{
+	            height: 56px;
+	            position: relative;
+	            float:left;
+	            min-width: 200px;
+	        }
+            
+            .profile-name{
+                font-size: 0.7em;
+                position: absolute;
+                width: 100%;
+                bottom: 0;
+            }
+            
+            .profile-name a{
+                text-decoration: none;
+                color: orangered;
+            }
+                    
+            h1{
+                font-size: .9em;
+                margin: 0;
+            }
+   
+
+		    .play-button{
+		        opacity: 0.5;
+				transition: opacity 0.5s;
+				-webkit-transition: opacity 0.5s;
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+				background-image: url({{ asset('js/app/home/dist/img/playbutton.png') }});
+				background-position: center;
+				background-repeat: no-repeat;
+		    }
+		    .play-button:hover{
+		    	opacity:1;
+		    }
+
+		</style>	
+        {% include "::analytics.html.twig" %}  
+	</head>
+
+	<body id="zeega-embed"  >
+		
+		<a id="zeega-link" href="{{hostname}}{{directory}}{{project.id}}" ></a>
+            <div class="info-overlay">
+                <div class="left-column">
+                  <a href="/profile/{{ project.user.id }}"  target="blank" >
+                    <div class="profile-token"><img src="{{ project.user.thumbUrl }}"></div>
+                   </a>
+                </div>
+                <div class="right-column">
+                  <h1 class = "caption">{{ project.title }}</h1>
+                  
+                  <div class="profile-name">
+                    <a href="/profile/{{project.user.id}}" target="blank" >
+                      {{ project.user.displayName }}
+                    </a>
+                  </div>
+                  
+                </div>
+                  
+            
+            </div>
+        <a id="zeega-play" href="{{hostname}}{{directory}}{{project.id}}"><span class="play-button"></span></a>
+        
+
+
+        <script>
+
+        	var isMobile = {
+				    Android: function() {
+				        return navigator.userAgent.match(/Android/i) ? true : false;
+				    },
+				    BlackBerry: function() {
+				        return navigator.userAgent.match(/BlackBerry/i) ? true : false;
+				    },
+				    iOS: function() {
+				        return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
+				    },
+				    Windows: function() {
+				        return navigator.userAgent.match(/IEMobile/i) ? true : false;
+				    },
+				    any: function() {
+				        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+				    }
+				};
+			
+			if( isMobile.any() ){
+
+				document.getElementById("zeega-play").setAttribute("target","blank");
+			}
+			
+				
+
+		</script>
+      
+	</body>
+</html>

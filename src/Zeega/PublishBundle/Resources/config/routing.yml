@@ -1,0 +1,24 @@
+ZeegaPublishBundle_frame_publish:
+    pattern: /projects/{projectId}/frames/{frameId}
+    defaults: { _controller:  ZeegaPublishBundle:Publish:frame }
+
+ZeegaPublishBundle_embed:
+    pattern: /{id}/embed
+    defaults: { _controller:  ZeegaPublishBundle:Publish:embed }
+
+ZeegaPublishBundle_project_main:
+    pattern: /{id}
+    defaults: { _controller:  ZeegaPublishBundle:Publish:project }
+
+ZeegaPublishBundle_project_oldview:
+    pattern: /{id}/view
+    defaults: { _controller:  ZeegaPublishBundle:Publish:project }
+
+ZeegaPublishBundle_project_altview:
+    pattern: /project/{id}/view
+    defaults: { _controller:  ZeegaPublishBundle:Publish:project }
+
+ZeegaPublishBundle_project_remix:
+    pattern: /{id}/remix
+    defaults: { _controller:  ZeegaPublishBundle:Publish:projectRemix }
+

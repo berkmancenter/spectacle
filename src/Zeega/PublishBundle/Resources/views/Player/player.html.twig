@@ -1,0 +1,84 @@
+{% if project.thumbnailUrl is defined and project.thumbnailUrl is not empty %}
+    {% set thumbnailUrl = project.thumbnailUrl %}
+{% elseif project.coverImage is defined and project.coverImage is not empty %}
+    {% set thumbnailUrl = project.coverImage %}
+{% else %}
+    {% set thumbnailUrl = "http://zeega.com/images/default_cover.png" %}
+{% endif %}
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        {% include "ZeegaPublishBundle:Player:meta.html.twig" %}        
+
+        <!-- STYLESHEETS -->
+        {% block player_stylesheets %}
+        
+        {% if app.environment == 'prod' %}
+            <link rel="stylesheet" type="text/css" href="{{ asset('js/app/player.standalone/dist/release/index.css') }}">
+        {% else %}
+            <link rel="stylesheet" type="text/css" href="{{ asset('js/app/player.standalone/dist/debug/index.css') }}">
+        {% endif %}
+
+        {% endblock player_stylesheets %}
+        <!-- END STYLESHEETS -->
+
+
+        <meta name="zeega" content="zeega-player"
+            data-user-thumbnail="{{project.user.thumbUrl}}"
+            data-views="{{project.views | default(0)}}"
+            data-directory="{{directory}}"
+            data-hostname="{{hostname}}"
+            data-user-id="{{project.user.id}}"
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            data-logged-in=true
+            {% else %}
+            data-logged-in=false
+            {% endif %}
+         />
+         
+        <script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="lib/swfobject" src="{{ asset('js/lib/swfobject.js') }}"></script>
+        
+        {% include '::analytics.html.twig' %}
+
+
+        <script>
+
+            // Because IE sucks
+            if ( !window.console ) {
+                console = {log: function() {}};
+            }
+            
+            {% block player_data %}
+            // Project data
+            
+                var projectJSON = "{{ project_data|e('js') }}";
+                var relatedProjectsJSON = "{{ related_projects_data|e('js') }}";
+
+
+            {% endblock player_data %}
+
+        </script>
+
+
+        {% block player_script %}
+        
+        {% if app.environment == 'prod' %}
+        <script src="{{ asset('js/app/player.standalone/dist/release/require.js') }}" ></script>
+        {% else %}
+        <script src="{{ asset('js/app/player.standalone/dist/debug/require.js') }}" ></script>
+        {% endif %}
+
+        {% endblock player_script %}
+    </head>
+
+    <body>
+        <img style="display:none" width="1px" height="1px" src="{{thumbnailUrl}}" />
+        <div role="main" id="main">
+            <div id='overlays'></div>
+            <div id='player'></div>
+        </div>
+    </body>
+</html>

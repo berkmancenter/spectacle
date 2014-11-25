@@ -1,0 +1,5 @@
+{
+  "app/modules/name.js": "app/modules/{%= name %}.js",
+  "app/templates/name.html": "app/templates/{%= name %}.html",
+  "app/styles/name.styl": "app/styles/{%= name %}.styl"
+}

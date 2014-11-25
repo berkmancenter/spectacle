@@ -1,0 +1,125 @@
+{
+{% if project.publicId is defined and project.publicId is not empty %}
+"id" : {{ project.publicId | default("") | json_encode | raw }},
+{% else %}
+"id" : {{ project.id | default("") | json_encode | raw }},
+{% endif %}
+"user": {% include 'ZeegaApiBundle:Users:user-include.json.twig' with {'user': project.user} %},
+"title" : {{ project.title | default("") | json_encode | raw}},
+"date_created" : "{{ project.dateCreated is empty ? "" : project.getDateCreated()  | date("m/d/Y ") }}",
+"date_updated" : "{{ project.dateUpdated is empty ? "" : project.getDateUpdated()  | date("m/d/Y h:m:s")}}",
+"date_published" : "{{ project.datePublished is empty ? "" : project.getDatePublished()  | date("m/d/Y h:m:s") }}",
+"tags" : {{ project.tags | default("") | json_encode | raw}},
+{% if project.getTags is defined %}
+"tags" : [        
+    {% for tag in project.getTags() %}    
+    {{ tag.name | json_encode | raw}}
+    {%- if loop.index0 < project.getTags()|length - 1 -%}
+    ,
+    {%- endif -%}           
+    {% endfor %}
+],
+{%- endif -%}
+"authors" : {{ project.authors | default("") | json_encode | raw}},
+"cover_image" : {{ project.coverImage | default(null) | json_encode | raw}},
+"enabled" : {{ project.enabled | default(false) | json_encode | raw}},
+"autoplay" : {{ project.autoplay | default(false) | json_encode | raw}},
+"show_metadata" : {{ project.showMetadata | default(false) | json_encode | raw}},
+"autoplay_duration" : {{ project.autoplayDuration | default(5) | json_encode | raw}},
+"estimated_time" : {{ project.estimatedTime | default("Some time") | json_encode | raw}},
+"description" : {{ project.description | default("") | json_encode | raw}},
+"location" : {{ project.location | default("") | json_encode | raw}},
+"item_id" : {{ project.itemId | default(null) | json_encode | raw}},
+"mobile" : {{ project.mobile | default(false) | json_encode | raw}},
+"published" : {{ project.published | default(false) | json_encode | raw}},
+"cover_image" : {{ project.coverImage | default("") | json_encode | raw}},
+"views":{{ project.views | default(0) | json_encode | raw}},
+"editable":{{ isEditable(project.user.id, project.editable) | default(false) | json_encode | raw}},
+"remixable":{{ project.getRemixable | default(false) | json_encode | raw}},
+"favorite":{{ favorite | default(false) | json_encode | raw}},
+"favorite_count":{{ project.favorites.count | json_encode | raw}}
+{% if project.getSequences is defined %}
+,"sequences" : [        
+    {% for sequence in project.getSequences() %}    
+    {
+        "id" : {{ sequence.id | default("") | json_encode | raw}},
+        "title" : "{{ sequence.title | default("") }}",
+        "attr" : {{sequence.attr | default({}) | json_encode | raw}},
+        "persistent_layers" : {{sequence.persistentLayers | default([]) | json_encode | raw}},
+        "description" : {{sequence.description | default(null) | json_encode | raw}},
+        "advance_to" : {{sequence.advanceTo | default(null) | json_encode | raw}},
+        "frames" : {{sequence.frames | default([]) | json_encode | raw}}
+    }
+    {%- if loop.index0 < project.getSequences()|length - 1 -%}
+    ,
+    {%- endif -%}           
+    {% endfor %}
+]
+{%- endif -%}
+,"frames" : [
+    {% for frame in project.getFrames %}
+    {   
+        "id" : {{ frame.getId | json_encode | raw}},
+        "attr" : {{ frame.attr | default({}) | json_encode | raw}},
+        "thumbnail_url" : {{ frame.thumbnailUrl | default("") | json_encode | raw}},
+        "controllable": {{frame.controllable | default(true) | json_encode | raw}},
+        "layers" : {{frame.layers | json_encode | raw}}
+    }   
+    {%- if loop.index0 < project.getFrames()|length - 1 -%}
+    ,
+    {%- endif -%}           
+    {% endfor %}
+    
+]
+,"layers":[
+    {% for layer in project.getLayers() %}
+    {   
+        "id" : {{ layer.getId | json_encode | raw}},
+        "type" : {{layer.getType | default("") | json_encode | raw}},
+        "project_id" : {{ layer.getProjectId | default("") | json_encode | raw}},
+        "attr" : {{layer.attr | default([ ]) | json_encode | raw}}
+    }   
+    {%- if loop.index0 < project.getLayers()|length - 1 -%}
+    ,
+    {%- endif -%}           
+    {% endfor %}        
+]
+,"remix":{
+    "remix": {{ (project.getRootProject is not null) | json_encode | raw}}
+    {% if project.getRootProject is not null %}
+        ,"root": {
+            "id": {{project.getRootProject.publicId | default(project.getRootProject.id) | json_encode | raw }},
+            "cover_image": {{project.getRootProject.getCoverImage | json_encode | raw }},
+            "user": {% include 'ZeegaApiBundle:Users:user-include.json.twig' with {'user': project.getRootProject.user} %}
+        }
+    {% endif %}
+    {% if project.getAncestors is not null %}
+        ,"ancestors": [
+        {% for ancestor in project.getAncestors %}
+        {
+            "id": {{ancestor.publicId | default(ancestor.id) | json_encode | raw }},
+            "cover_image": {{ancestor.getCoverImage | json_encode | raw }},
+            "user": {% include 'ZeegaApiBundle:Users:user-include.json.twig' with {'user': ancestor.user} %}
+        }
+        {%- if loop.index0 < project.getAncestors()|length - 1 -%}
+        ,
+        {%- endif -%}     
+        {% endfor %}
+        ]
+    {% endif %}
+     {% if project.getDescendants is not null %}
+        ,"descendants": [
+        {% for descendant in project.getDescendants() %}
+        {   
+            "id": {{descendant.publicId | default(descendant.publicId) | json_encode | raw }},
+            "cover_image": {{descendant.getCoverImage | json_encode | raw }},
+            "user": {% include 'ZeegaApiBundle:Users:user-include.json.twig' with {'user': descendant.user} %}
+        }
+        {%- if loop.index0 < project.getDescendants()|length - 1 -%}
+        ,
+        {%- endif -%}     
+        {% endfor %}
+        ]
+    {% endif %}
+}
+}

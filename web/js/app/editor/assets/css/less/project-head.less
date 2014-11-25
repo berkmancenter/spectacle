@@ -1,0 +1,339 @@
+.project-cover {
+    &.project-cover-tiny {
+        height: 28px;
+        width: 28px;
+        background-color: #ccc;
+    }
+}
+
+.remix-header {
+    font-size: 14px;
+    border-radius: 2px 40px 40px 2px;
+    padding: 0px 0px 0px 13px;
+    background-color: rgba(0,0,0,0.1);
+    color: #666;
+    font-family: "futura", sans-serif;
+    background: url(../img/tiny-stripes.png);
+    background-color: #ccc;
+    box-shadow: inset 2px 2px 2px rgba(0,0,0,0.25);
+    margin-left: 12px;
+
+    .project-cover,
+    .profile-token {
+        display: inline-block;
+        vertical-align: -11px;
+    }
+
+    .project-cover {
+        position: relative;
+        top: -2px;
+    }
+}
+
+.ZEEGA-tab {
+    background: rgba(70,70,70,0);
+    display: block;
+    padding: 5px;
+    width: 30px;
+    height: 35px;
+    border-radius: 0 0 2px 2px;
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 10px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+
+    &:hover {
+        padding-top: 10px;
+        background: rgba(70,70,70,0.9);
+    }
+
+    .ZTab-logo {
+        display: block;
+        height: 30px;
+        width: 30px;
+        background-image: url(../img/spectacle-logo.png);
+        background-size: 30px 30px;
+        margin-top: 2px;
+    }
+}
+
+.navbar {
+    height: 30px;
+    .btnz {
+        display: block;
+    }
+
+    .icon-question-sign {
+        position: relative;
+        top: 20px;
+    }
+
+    .pull-left {
+        margin-left: 50px;
+    }
+
+    li {
+        float: left;
+        margin-right: 10px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+        &.logo {
+            padding: 0;
+            img {
+                height: 100%;
+            }
+        }
+    }
+
+}
+
+.project-head {
+    font-size: 1.75em;
+    color: #555;
+    z-index: 10;
+    position: relative;
+    min-width: 960px;
+    .clearfix;
+
+    .nav-wrapper {
+        .clearfix;
+        padding: 10px 0;
+    }
+
+    .nav {
+        float: left;
+        .clearfix();
+    }
+
+    .saving-indicator {
+        font-family: "helvetica", sans-serif;
+        font-size: 12px;
+    }
+
+    .nav-buttons-right {
+        float: right;
+        li {
+            float: left;
+            margin-right: 10px;
+            a {
+                display: block;
+            }
+        }
+    }
+
+    .new-zeega {
+        background-color: @grey;
+
+        &:hover {
+            background-color: orange;
+        }
+    }
+
+    .user-token {
+        height: 28px;
+        width: 28px;
+        display: inline-block;
+        border-radius: 20px;
+        border: 2px solid @interfacePrimary;
+
+        &:hover {
+            border: 2px solid @red;
+        }
+    }
+
+    .project-info {
+        float: left;
+
+        width: -webkit-calc( ~"100% - 175px" );
+        width: -moz-calc( ~"100% - 175px" );
+        width: calc( ~"100% - 175px" );
+
+        border-bottom: 2px dotted transparent;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        &:hover, &:focus {
+            border-bottom: 2px dotted #999;
+            outline: none;
+            background: rgba(255,255,0,0.25);
+        }
+    }
+
+    .zeega-faq,
+    .project-preview {
+        float:right;
+    }
+
+    .zeega-faq {
+        margin-right: 10px;
+    }
+
+    .project-share {
+        width: 150px;
+    }
+
+}
+
+.share-grave {
+    background: url(../img/tiny-stripes-dark.png);
+    background-color: #ccc;
+    clear: both;
+    display: none;
+    box-shadow: inset 0px 5px 5px rgba(0,0,0,0.25);
+    padding: 10px;
+    min-width: 960px;
+    .clearfix;
+
+    &.active {
+        margin-bottom: 10px;
+    }
+
+    .grave-inner {
+        margin: 0 40px;
+        font-size: 13px;
+        width: 960px;
+        margin: 0 auto;
+        .clearfix;
+
+        .share-meta {
+            width: 380px;
+            height: 100px;
+            background: white;
+            border-radius: 2px;
+            float: left;
+            padding: 10px;
+
+
+            .caption-info {
+                color: #ccc;
+            }
+
+            .cover-image-wrapper {
+                float: left;
+                width: 150px;
+
+                .caption-info {
+                    margin-top: 5px;
+                }
+            }
+
+            .project-cover {
+                background-color: black;
+                height: 79px;
+                width: 150px;
+
+                &.can-drop {
+                    outline: 1px solid #FF0001;
+                }
+            }
+
+            .caption-side {
+                position: relative;
+                width: 218px;
+                float: right;
+                height: 100px;
+                
+                textarea {
+                    float: right;
+                    margin: 0px;
+                    width: 208px;
+                    height: 68px;
+                    border: none;
+                    outline: 1px dotted #ccc;
+                    padding: 5px;
+                    resize:none;
+                }
+                .caption-info {
+                    position: absolute;
+                    bottom: 0;
+                }
+            }
+        }
+
+        .share-tabs {
+            float: right;
+            text-align: right;
+
+            a {
+                border-radius: 2px 0 0 2px;
+                color: #222;
+                padding: 3px 10px;
+                display: block;
+                font-weight: bold;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+
+                &.active {
+                    background-color: white;
+                }
+            }
+        }
+
+        .share-tab-content {
+            border-radius: 0 2px 2px 2px;
+            background: white;
+            width: 400px;
+            height: 100px;
+            float: right;
+            padding: 10px;
+
+            .share-window {
+                display: none;
+                &.active {
+                    display: block;
+                }
+
+                p {
+                    margin: 0;
+                }
+            }
+
+            .share-window>div {
+                margin-bottom: 20px
+            }
+            .share-window>div:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        input {
+            width: 90%;
+            display: block;
+        }
+
+        input#autoplay, input#show-metadata {
+          display: inline-block;
+          width: auto;
+        }
+
+        input#autoplay-duration {
+          display: inline-block;
+          width: 20px;
+        }
+
+    }
+
+    .close-wrapper {
+        position: absolute;
+        right: 10px;
+
+        a {
+            color: #555;
+            height: 20px;
+            display: inline-block;
+            top: -11px;
+            position: relative;
+        }
+    }
+
+    .project-share {
+        float: right;
+    }
+}

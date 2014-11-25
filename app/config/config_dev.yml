@@ -1,0 +1,40 @@
+imports:
+    - { resource: config.yml }
+
+framework:
+    router:   { resource: "%kernel.root_dir%/config/routing_dev.yml" }
+    profiler: { only_exceptions: false }
+    session:
+        cookie_domain: ~
+        cookie_lifetime: 1440000
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
+
+monolog:
+    handlers:
+        main:
+            type:  stream
+            path:  %kernel.logs_dir%/%kernel.environment%.log
+            level: info
+
+assetic:
+    use_controller: true
+
+swiftmailer:
+    delivery_address: jclark@cyber.law.harvard.edu
+
+snc_redis:
+    clients:
+        default:
+            type: predis
+            alias: default
+            dsn: redis://%event_logger_host%
+        id:
+            type: predis
+            alias: session
+            dsn: redis://%id_host%
+            options:
+                connection_timeout: 5
+                read_write_timeout: 5

@@ -1,0 +1,7 @@
+ZeegaDiscoveryBundle_library:
+    pattern: /library
+    defaults: { _controller:  ZeegaDiscoveryBundle:Library:index }
+
+ZeegaDiscoveryBundle_collection:
+    pattern: /collection/{id}
+    defaults: { _controller:  ZeegaDiscoveryBundle:Collection:index }

@@ -1,0 +1,41 @@
+imports:
+    - { resource: config.yml }
+
+framework:
+    router:
+        strict_requirements: null
+    validation:
+        cache: apc
+    session:
+        handler_id: snc_redis.session.handler
+
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
+        nested:
+            type:  stream
+            path:  %kernel.logs_dir%/%kernel.environment%.log
+            level: debug
+
+assetic:
+    use_controller: true
+
+snc_redis:
+    session:
+        client: session
+        ttl: 1440000
+    clients:
+        default:
+            type: predis
+            alias: default
+            dsn: redis://%event_logger_host%
+            options:
+                connection_timeout: 5
+                read_write_timeout: 10
+        session:
+            type: predis
+            alias: session
+            dsn: redis://%session_logger_host%

@@ -1,0 +1,54 @@
+html {
+	background: black;
+	font-family: 'Helvetica', sans-serif;
+}
+
+#main {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	z-index: 10;
+	top: 0;
+	overflow: hidden;
+
+	#overlays {
+		background:none !important;
+	}
+	#player {
+		height:100%;
+		position: absolute;
+		width:100%;
+		z-index: 1;
+	}
+}
+
+
+a {
+	color: white;
+	text-decoration: none;
+	&:link {
+
+	}
+	&:hover {
+		color: orangered;
+	}
+	&:visited {
+	}
+	&:active {
+		color: orangered;
+	}
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+::-webkit-scrollbar-thumb {
+    // -webkit-box-shadow: inset 0 0 6px #767676;
+    background: #767676;
+}

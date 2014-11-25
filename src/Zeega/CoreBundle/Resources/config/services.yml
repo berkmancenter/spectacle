@@ -1,0 +1,45 @@
+parameters:
+#    zeega_core.example.class: Zeega\CoreBundle\Example
+
+services:
+    zeega.twig.extension:
+        class: Zeega\CoreBundle\Twig\Extensions\ZeegaTwigExtension
+        arguments:
+            service_container: "@service_container"
+        tags:
+            - { name: twig.extension }
+
+    zeega_thumbnail:
+        class: Zeega\CoreBundle\Service\ThumbnailService
+        arguments: 
+            doctrine: "@doctrine_mongodb"
+            service_container: "@service_container"
+
+    zeega_response_listener:
+        class: Zeega\CoreBundle\Listener\CoreResponseListener
+        arguments:
+            security: "@security.context"
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
+    zeega_query_parser:
+        class: Zeega\CoreBundle\Service\QueryParserService
+        arguments: 
+            security: "@security.context"
+            doctrine: "@doctrine_mongodb"
+
+    zeega_apc_cache:
+        class: Zeega\CoreBundle\Service\ApcCacheService
+
+    zeega_id:
+        class: Zeega\CoreBundle\Service\IdService
+        arguments: 
+            redis: "@snc_redis.default"
+
+    zeega_email:
+        class: Zeega\CoreBundle\Service\EmailService
+        arguments: 
+            mailer: "@mailer"
+
+    zeega_mobile_detect:
+        class: Zeega\CoreBundle\Helpers\NeverMobile

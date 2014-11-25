@@ -1,0 +1,104 @@
+@parentColor: #f06;
+@currentColor: cyan;
+@rootColor: #111;
+@largeTokenSize: 75px;
+@mediumTokenSize: 37px;
+
+.ZEEGA-remix-endpage {
+
+    display: block;
+    color: white;
+    position: absolute;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    background: url(../img/tiny-stripes-dark.png);
+
+    .title,.username,.token-wrapper {
+        float:left;
+    }
+
+    .token-wrapper {
+        width: 15%;
+    }
+    .title,.username {
+        width: 42.5%;
+    }
+    .title {
+        text-align: right;
+    }
+    .username {
+        text-align: left;
+    }
+
+    h1 {
+        font-family: "futura";
+        font-size: 26px;
+        padding: 20px;
+    }
+
+    .remix-project-wrapper {
+        .clearfix;
+    }
+
+
+    .project-current {
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%, fade( @currentColor, 100% ) ), color-stop(100%, fade( @parentColor, 50% ) )); /* Chrome,Safari4+ */
+        margin-top: 5px;
+        color: white;
+
+        .username, .title {
+            margin-top: 16px;
+        }
+    }
+
+    .project-parent {
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%, fade( @parentColor, 50% ) ), color-stop(100%, fade( @parentColor, 100% ) )); /* Chrome,Safari4+ */
+        margin-top: 5px;
+        color: white;
+
+        .username, .title {
+            margin-top: 38px;
+        }
+    }
+
+
+    .project-root {
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%, fade( @parentColor, 50% ) ), color-stop(100%, fade( @rootColor, 100% ) )); /* Chrome,Safari4+ */
+        margin-top: 5px;
+        color: white;
+
+        .username, .title {
+            margin-top: 16px;
+        }
+    }
+
+
+    .end-page-wrapper {
+        height: 200px;
+        width: 100%;
+        position: absolute;
+        text-align: center;
+        font-size: 14px;
+    }
+
+}
+
+.user-token {
+    
+    margin: auto;
+
+    &.user-token-large {
+        height: @largeTokenSize;
+        width: @largeTokenSize;
+        border-radius: @largeTokenSize;
+        border: 8px solid white;
+    }
+
+    &.user-token-medium {
+        height: @mediumTokenSize;
+        width: @mediumTokenSize;
+        border-radius: @mediumTokenSize;
+        border: 3px solid white;
+    }
+}

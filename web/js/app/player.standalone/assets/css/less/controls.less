@@ -1,0 +1,36 @@
+.ZEEGA-player-controls {
+    pointer-events:auto;
+    position: absolute;
+    top: 40%;
+    width: 100%;
+}
+
+.arrow {
+
+    background-image: url(../img/arrow-sprites.png);
+    width: 70px;
+    height: 117px;
+    display: block;
+    position: absolute;
+    z-index: 100;
+    background-size: 150px;
+    background-repeat: no-repeat;
+
+    &.arrow-right {
+        background-position: -66px 0;
+        right: 10px;
+    }
+
+    &.arrow-left {
+        left: 10px;
+    }
+    
+    &.disabled {
+        opacity:0.0;
+        pointer-events:none;
+        transition: opacity 0.5s;
+        -moz-transition: opacity 0.5s; /* Firefox 4 */
+        -webkit-transition: opacity 0.5s; /* Safari and Chrome */
+        -o-transition: opacity 0.5s; /* Opera */
+    }
+}

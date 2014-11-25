@@ -1,0 +1,72 @@
+<% if ( remix.remix && false ) { %>
+
+<div class="loader-remix-meta" class="<%= token_class %>">
+
+    <div class="column project-current">
+        <div class="title">a remix by</div>
+        <div class="user-token user-token-large" style="
+            background-image: url(<%= user.thumbnail_url %>);
+            background-size: cover;
+            background-position: center;
+        "></div>
+        <div class="username"><%= user.display_name %></div>
+    </div>
+
+    <div class="column column-arrow">
+        <div class="remix-arrow gradient1"></div>
+    </div>
+
+    <div class="column project-parent">
+        <div class="title">via</div>
+        <div class="user-token user-token-medium" style="
+            background-image: url(<%= remix.parent.user.thumbnail_url %>);
+            background-size: cover;
+            background-position: center;
+        "></div>
+        <div class="username"><%= remix.parent.user.display_name %></div>
+    </div>
+
+    <% if ( remix.parent.id != remix.root.id ) { %>
+
+        <div class="column column-arrow">
+            <div class="remix-arrow gradient2"></div>
+        </div>
+
+        <div class="column project-root">
+            <div class="title">started by</div>
+            <div class="user-token user-token-medium" style="
+                background-image: url(<%= remix.root.user.thumbnail_url %>);
+                background-size: cover;
+                background-position: center;
+            "></div>
+            <div class="username"><%= remix.root.user.display_name %></div>
+        </div>
+
+    <% } %>
+</div>
+
+<% } %>
+
+<div class="ZEEGA-notices">
+    <ul class="sticky">
+        <li><i class="icon-headphones icon-white"></i> turn up volume</li>
+        <li>click arrows to explore</li>
+    </ul>
+    <ul class="rotating">
+    </ul>
+</div>
+
+<div class="ZEEGA-loader-bg-overlay"></div>
+<div class="ZEEGA-loader-bg"
+    style="
+        background: url(<%= cover_image %>);
+        background-position: 50% 50%;
+        background-repeat: no-repeat no-repeat;
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    "
+></div>
+<img class="bg-preload" src="<%= cover_image %>">

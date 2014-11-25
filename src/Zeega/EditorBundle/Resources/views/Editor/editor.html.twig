@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <meta name="robots" content="noindex,follow">
+        <meta name="description" content="Zeega Editor - PRIME">
+        <meta name="author" content="">
+
+        {% include "::meta.html.twig" %}   
+
+        <!-- Zeega metatags -->
+
+        <meta name="zeega" content="zeega-editor"
+            data-api-root="{{directory}}"
+            data-root="{{directory}}"
+            data-api-root="{{directory}}"
+            data-hostname="{{hostname}}"
+            data-editor="editor"
+
+            data-user-id="{{project.user.getId}}"
+            data-user-name="{{project.user.displayname}}"
+            data-user-thumbnail="{{project.user.getThumbUrl}}"
+            data-user-username="{{project.user.getUsername}}"
+
+
+            data-media-root="{{media_host}}"
+            data-project-id="{{project.getId}}"
+            data-user-email="{{ project.user.getEmail}}"
+
+            data-fav-id="51afedf18d34d4d711000000"
+            data-new-user="{{new_user | json_encode}}"
+            data-new-zeega="{{new_zeega | json_encode}}"
+
+
+        />
+
+        <!-- STYLESHEETS -->
+        {% if app.environment == 'prod'  %}
+            <link rel="stylesheet" href="{{ asset('js/app/editor/dist/release/index.css') }}">
+        {% else %}
+            <link rel="stylesheet" href="{{ asset('js/app/editor/dist/debug/index.css') }}">
+        {% endif %}
+        <!-- END STYLESHEETS -->
+
+        <link href="//fonts.googleapis.com/css?family=PT+Sans:400,700,400italic|Forum" rel="stylesheet" type="text/css">
+        <script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="lib/swfobject" src="{{ asset('js/lib/swfobject.js') }}"></script>
+
+        <script>
+        
+            // Because IE sucks
+            if ( !window.console ) {
+                console = {log: function() {}};
+            }
+
+            // Media data
+            var mediaJSON = "{{ media_data|e('js') }}";
+            // Project data
+            var projectJSON = "{{ project_data|e('js') }}";
+             // Audio data
+            var audioJSON = "{{ audio_data|e('js') }}";
+
+        </script>
+      {% include '::analytics.html.twig' %}
+    
+    {% if app.environment == 'prod'  %}
+        <script src="{{ asset('js/app/editor/dist/release/require.js') }}" ></script>
+
+    {% else %}
+
+        <script src="{{ asset('js/app/editor/dist/debug/require.js') }}" ></script>
+
+    {% endif %}
+
+    </head>
+
+    <body>
+        <div role="main" id="main"></div>
+    </body>
+</html>

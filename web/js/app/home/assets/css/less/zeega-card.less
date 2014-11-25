@@ -1,0 +1,110 @@
+article.zeega-card {
+    width: 600px;
+    font-size: 13px;
+    margin-bottom: 40px;
+    .clearfix;
+
+    .left-col {
+        width: 150px;
+        float: left;
+    }
+
+    .right-col {
+        width: 450px;
+        float: left;
+    }
+
+    .user-token {
+        margin: auto;
+    }
+
+    .profile-name {
+        text-align: center;
+    }
+
+    .social-stats,
+    .caption {
+        margin-top: 10px;
+        color: #B3B3B3;
+    }
+    
+    .edit-actions {
+        margin-top: 10px;
+        color: #333;
+    }
+
+    .social-stats {
+
+    }
+    .caption {
+
+    }
+    .edit-actions {
+        .btnz {
+            padding: 2px 15px;
+        }
+    }
+
+    .remixers {
+        list-style: none;
+        padding: 0;
+
+        li {
+            float: left;
+            margin: 0 2px 2px 0;
+        }
+    }
+
+    .cover-image {
+        height: 500px;
+        position: relative;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        cursor: pointer;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+
+        .static {
+            background-image: url(../img/static.gif);
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+        }
+
+        .playbutton {
+            opacity:0.5;
+            transition: opacity 0.5s;
+            -webkit-transition: opacity 0.5s;
+            width: 100px;
+            height: 100px;
+
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            background-image: url(../img/playbutton.png);
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        &:hover{
+            .playbutton {
+                opacity:1;
+                transition: opacity 0.5s;
+                -webkit-transition: opacity 0.5s;
+            }
+        }
+    }
+
+    a:link,
+    a:visited,
+    a:active {
+        color: #B3B3B3;
+    }
+
+    a:hover {
+        color: orangered;
+    }
+}

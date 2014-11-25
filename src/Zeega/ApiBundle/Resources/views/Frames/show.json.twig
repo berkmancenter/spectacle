@@ -1,0 +1,7 @@
+{
+		"id" : {{ frame.id | json_encode | raw }},
+		"attr" : {{frame.attr | default([ ]) | json_encode | raw}},
+		"thumbnail_url" : {{ frame.thumbnailUrl | default("") | json_encode | raw}},
+		"layers": {{frame.layers | default([ ]) | json_encode | raw}},
+        "controllable": {{frame.controllable | default(true) | json_encode | raw}}
+}

@@ -1,0 +1,82 @@
+header.ZEEGA-HEAD {
+    width: 100%;
+    position: fixed;
+    background:transparent;
+    padding: 0;
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .head-nav {
+        li {
+            float: left;
+            padding-top: 10px;
+            
+            &.tab {
+                padding-top: 0;
+            }
+        }
+
+        &.nav-left {
+            li {
+                margin-left: 10px;
+            }
+            
+        }
+
+        &.nav-right {
+            float: right;
+
+            li {
+                margin-right: 10px;
+            }
+            
+        }
+    }
+}
+
+.navbar{
+    z-index: 2;
+    
+    &.col-left{
+        float: left;
+        height: 30px;
+        width: 305px;
+        margin: 10px;
+    }
+}
+
+.ZEEGA-tab {
+    background: rgba(70,70,70,0);
+    display: block;
+    padding: 5px;
+    width: 30px;
+    height: 35px;
+    border-radius: 0 0 2px 2px;
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 10px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+
+    &:hover {
+        padding-top: 10px;
+        background: rgba(70,70,70,0.9);
+    }
+
+    .ZTab-logo {
+        display: block;
+        height: 30px;
+        width: 30px;
+        background-image: url(../img/spectacle-logo.png);
+        background-size: 30px 30px;
+        margin-top: 2px;
+    }
+}
+.ZEEGA-HEAD {
+
+}

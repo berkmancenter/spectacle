@@ -1,0 +1,57 @@
+{% if project.thumbnailUrl is defined and project.thumbnailUrl is not empty %}
+    {% set thumbnailUrl = project.thumbnailUrl %}
+{% elseif project.coverImage is defined and project.coverImage is not empty %}
+    {% set thumbnailUrl = project.coverImage %}
+{% else %}
+    {% set thumbnailUrl = "http://zeega.com/images/default_cover.png" %}
+{% endif %}
+
+<!doctype html>
+<html>
+	<head>
+
+		{% include "ZeegaPublishBundle:Player:meta.html.twig" %}
+
+
+
+		<link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+    
+		<style type="text/css">
+			body {margin:0px}
+			html {
+				background: url({{thumbnailUrl}}) no-repeat center center fixed;				
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				color:white;
+			}
+			
+			h1 {
+				padding:10px;
+				font-family: 'Open Sans Condensed',sans-serif;
+			}
+			h2 {
+				font-size:12px; 
+				padding:10px;
+				font-family: 'Open Sans Condensed',sans-serif;
+			}
+			#text{width:100%;background-color:rgba(0,0,0,.5); position: absolute; bottom: 10%; }
+			a{ width:100%; height:100%; z-index:1000; position:absolute;background:url({{ asset('images/embed_play.png')}}) center center no-repeat; background-size:12%;}
+		</style>
+
+    
+        
+    
+        {% include "::analytics.html.twig" %}
+	</head>
+
+	<body id="zeega-embed" >
+		
+		<a id="zeega-link" href="{{hostname}}{{directory}}{{project.id}}"></a>
+		<div id="text">
+			<h1>{{project.title}}</h1>
+			<h2>{{project.user.displayName}}</h2>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<div class="end-page-wrapper" >
+
+    <h1>Remix</h1>
+    <div class="project-current remix-project-wrapper">
+        <div class="title">just watched</div>
+        <div class="token-wrapper">
+            <div class="user-token user-token-medium" style="
+                background-image: url(<%= user.thumbnail_url %>);
+                background-size: cover;
+                background-position: center;
+            "></div>
+        </div>
+        <div class="username"><%= user.display_name %></div>
+    </div>
+
+<% if ( remix.remix ) { %>
+    <div class="project-parent remix-project-wrapper">
+        <div class="title">up next</div>
+        <div class="token-wrapper">
+            <div class="user-token user-token-large" style="
+                background-image: url(<%= remix.parent.user.thumbnail_url %>);
+                background-size: cover;
+                background-position: center;
+            "></div>
+        </div>
+        <div class="username"><%= remix.parent.user.display_name %></div>
+    </div>
+
+    <% if ( remix.parent.id != remix.root.id ) { %>
+
+        <div class="project-root remix-project-wrapper">
+            <div class="title">remixed from</div>
+            <div class="token-wrapper">
+                <div class="user-token user-token-medium" style="
+                    background-image: url(<%= remix.root.user.thumbnail_url %>);
+                    background-size: cover;
+                    background-position: center;
+                "></div>
+            </div>
+            <div class="username"><%= remix.root.user.display_name %></div>
+        </div>
+
+    <% } %>
+<% } %>
+</div>

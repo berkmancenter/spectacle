@@ -1,0 +1,64 @@
+.ZEEGA-player {
+
+  background-color:#000000;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 16px;
+  height:100%;
+  left:0;
+  overflow:hidden;
+  position: absolute;
+  top:0;
+  width:100%;
+  opacity:0.01;
+
+  &.preview-player {
+    background: url(../img/transparency-grid.png);
+  }
+
+  .ZEEGA-player-window,
+  .ZEEGA-player-overlay {
+    margin: 0 auto;
+    position: relative;
+  }
+}
+
+.ZEEGA-player-wrapper {
+  position: absolute;
+  background: black;
+  overflow: hidden;
+  margin: auto;
+  left: 0;
+  right: 0;
+  .transition( height, 0.5s );
+  .transition( width, 0.5s );
+}
+
+.ZEEGA-player-window {
+  background: black;
+  height: 100%;
+  .transition( height, 0.5s );
+  .transition( width, 0.5s );
+  
+  &>.visual-element {
+    position: absolute;
+    top:0;
+    left:0;
+  }
+}
+
+// sets hover glow
+[ data-glowOnHover = true ] {
+  box-shadow: 0 0 10px transparent;
+  transition: box-shadow 0.5s;
+  -moz-transition: box-shadow 0.5s; /* Firefox 4 */
+  -webkit-transition: box-shadow 0.5s; /* Safari and Chrome */
+  -o-transition: box-shadow 0.5s; /* Opera */
+
+  &:hover {
+    box-shadow: 0 0 10px white;
+    transition: box-shadow 0.5s;
+    -moz-transition: box-shadow 0.5s; /* Firefox 4 */
+    -webkit-transition: box-shadow 0.5s; /* Safari and Chrome */
+    -o-transition: box-shadow 0.5s; /* Opera */
+  }
+}

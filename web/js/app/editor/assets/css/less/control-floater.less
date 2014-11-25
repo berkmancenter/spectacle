@@ -1,0 +1,121 @@
+.ZEEGA-control-floater {
+    background: rgba(0,0,0,0.5);
+    background-image: url(../img/tiny-stripes-dark.png);
+    border: 1px solid #FF0001;
+    position: absolute;
+    z-index: 100;
+
+    font-size: 12px;
+    border-radius: 2px 0 0 2px;
+
+    .control {
+        float: left;
+        border-right: 1px solid rgba(255,255,255,0.2);
+        padding: 12px 10px;
+        text-align: center;
+
+        .control-name {
+            color: #fff;
+        }
+
+        input {
+            margin-top: 5px;
+        }
+    }
+
+    .hidden-controls {
+        position: absolute;
+        z-index: 20;
+        background: rgba(0,0,0,0.8);
+        width: 100%;
+        padding: 8px 0;
+        border-radius: 0 0 5px 5px;
+    }
+}
+
+
+.controls-wrapper {
+
+    .clearfix;
+    background: rgba(0,0,0,0.25);
+
+    .frame-controls {
+        float: left;
+        width: 100px;
+        height: 55px;
+        color: white;
+        font-size: 12px;
+        text-align: center;
+        margin-top: 5px;
+        margin-right: 10px;
+        padding-right: 10px;
+        border-right: 1px solid #444;
+
+        .section-header {
+            margin-bottom: 2px;
+        }
+
+        .adv-section {
+            display: inline-block;
+            width: 47%;
+
+            opacity: 0.25;
+
+            &.active {
+                opacity: 1;
+                background: rgba(255,255,255,0.1);
+                border-radius: 6px;
+            }
+
+            input {
+                width: 24px;
+                border: none;
+                height: 12px;
+            }
+        }
+    }
+
+    .layer-controls {
+        float:right;
+        min-height: 60px;
+        color: white;
+        font-size: 12px;
+        font-family: "Helvetica", sans-serif;
+        position: relative;
+        .clearfix;
+
+        .layer-bar-title {
+            font-size: 13px;
+            padding: 5px;
+            font-weight: bold;
+            color: #FF0001;
+        }
+
+        .layer-controls-inner {
+            .clearfix;
+            padding-bottom: 5px;
+        }
+
+        .control {
+            margin-left: 10px;
+            float: left;
+
+            .control-name {
+                color: #aaa;
+            }
+
+            input {
+                margin-top: 5px;
+            }
+        }
+
+        .hidden-controls {
+            position: absolute;
+            z-index: 20;
+            background: rgba(0,0,0,0.8);
+            width: 100%;
+            padding: 8px 0;
+            border-radius: 0 0 5px 5px;
+        }
+    }
+}

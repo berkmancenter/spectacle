@@ -1,0 +1,108 @@
+.ZEEGA-loader-overlay {
+
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    color: white;
+    position: absolute;
+
+    .ZEEGA-loader-bg-overlay {
+        background: url(../img/tiny-stripes-dark.png);
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .ZEEGA-loader-bg {
+        position: absolute;
+        width:100%;
+        height:100%;
+        top:0;
+        left:0;
+        z-index: -2;
+        display: none;
+    }
+
+    .bg-preload {
+        position: absolute;
+        left: -1000%;
+        top: -1000%;
+        height: 1px;
+        width: 1px;
+    }
+
+    .loader-remix-meta {
+        height: 200px;
+        width: 325px;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        font-size: 13px;
+        text-align: center;
+
+        &.one-up {
+            width: 165px;
+        }
+
+        &.two-up {
+            width: 325px;
+        }
+
+        &.three-up {
+            width: 480px;
+        }
+    }
+
+    .column {
+        float: left;
+
+        &.column-center {
+            margin: 0 20px;
+        }
+
+        .username {
+            margin-top: 10px;
+        }
+
+        .title {
+            margin-bottom: 10px;
+        }
+
+        &.project-current {
+            color: @currentColor;
+
+            .user-token {
+                border-color: @currentColor;
+            }
+        }
+
+        &.project-parent {
+            color: @parentColor;
+            .user-token {
+                border-color: @parentColor;
+            }
+        }
+
+        &.project-parent,
+        &.project-root {
+            margin-top: 50px;
+        }
+    }
+
+    .remix-arrow {
+        height: 50px;
+        width: 50px;
+        background: url(../img/remix-arrow.png);
+        background-size: 100px 50px;
+        margin: 88px 10px;
+
+        &.gradient2 {
+            background-position: -50px 0;
+        }
+    }
+
+}

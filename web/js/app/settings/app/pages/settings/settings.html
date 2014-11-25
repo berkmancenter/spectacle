@@ -1,0 +1,31 @@
+<h1>Settings</h1>
+
+<div class="content-wrapper">
+
+    <form>
+        <fieldset>
+
+            <label>Username <span class="username-validation"></span></label>
+            <input id="username" type="text" placeholder="Username" value="<%= username %>">
+            <span class="help-block">Your username will become: @<span class="username-preview"><%= username %></span></span>
+
+            <label>Display Name</label>
+            <input id="display-name" type="text" placeholder="Display Name" value="<%= display_name %>">
+            <span class="help-block">The name that will appear next to your slideshows.</span>
+
+            <div class="half-width">
+                <label>Email Address</label>
+                <input id="email" type="email" placeholder="Email Address" value="<%= email %>">
+            </div>
+
+            <div class="half-width">
+                <label>New Password</label>
+                <input id="password" type="password" placeholder="Password" >
+            </div>
+            
+            <a href="#" class="btnz btnz-disabled settings-submit">Save Updates</a>
+        
+        </fieldset>
+    </form>
+
+</div>

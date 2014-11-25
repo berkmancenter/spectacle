@@ -1,0 +1,52 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host:
+    database_name:
+    database_user:
+    database_password:
+    database_type: pgsql
+
+    mailer_transport: smtp
+    mailer_host: localhost
+    mailer_user:
+    mailer_password:
+    mailer_encryption: ssl
+
+    locale: en
+
+    secret:
+
+    hostname: //spectacle.example.com
+    directory: /
+    path: /var/www/spectacle/
+    web_directory: /var/www/spectacle/web
+
+    solr_enabled: false
+    solr_host: localhost
+    solr_port: 8080
+    solr_path: /solr
+
+    ga_tracking: something
+
+    static_host: http://spectacle.example.com
+
+    media_host: /media/
+    event_logger_host: localhost
+    event_logger_host_web: localhost
+
+    facebook_appid: something
+    facebook_secret: something
+    mongodb_host: localhost
+    mongodb_database: local
+
+    mailer_email: 'somebody@spectacle.example.com'
+    id_host: localhost
+
+    twitter_consumer_key: something
+    twitter_consumer_secret: something
+    session_logger_host: localhost
+
+    session_memcached_host: 127.0.0.1
+    session_memcached_port: 11211
+    session_memcached_prefix: spec_sess
+    session_memcached_expire: 3600

@@ -1,0 +1,60 @@
+.ZEEGA-sequences {
+
+    display: none;
+    position: relative;
+    width: 100%;
+    .clearfix;
+
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+        text-decoration: none;
+        color: white;
+    }
+
+    .sequence-list {
+        margin: 0;
+        padding: 0px;
+        list-style: none;
+        overflow: auto;
+        white-space: nowrap;
+        .clearfix;
+    }
+
+    .ZEEGA-sequence {
+        background: rgba(255,255,255,0.5);
+        display: inline-block;
+        margin-right: 2px;
+        .clearfix;
+
+        &:last-child {
+            margin-right: 111px;
+        }
+
+        &>a {
+            display: inline-block;
+            .transition( background, 1s );
+            padding: 5px;
+            float: left;
+
+            &:hover {
+                background: rgba(0,0,0,0.1);
+                .transition( background, 0.5s );
+            }
+        }
+    }
+
+    .add-sequence {
+        right: 0;
+        position: absolute;
+        background: rgba(0,0,0,0.75);
+        top: 0;
+        .clearfix;
+
+        a {
+            padding: 5px;
+            float:left;
+        }
+    }
+}

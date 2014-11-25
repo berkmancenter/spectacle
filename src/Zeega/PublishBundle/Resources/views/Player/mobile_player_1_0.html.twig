@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <!-- standard viewport tag to set the viewport to the device's width
+            , Android 2.3 devices need this so 100% width works properly and
+            doesn't allow children to blow up the viewport width-->
+        <meta name="viewport" id="vp" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+        <!-- width=device-width causes the iPhone 5 to letterbox the app, so
+            we want to exclude it for iPhone 5 to allow full screen apps -->
+        <meta name="viewport" id="vp" content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" />
+        <!-- provide the splash screens for iPhone 5 and previous -->
+        <link href="assets/splashs/splash_1096.png" rel="apple-touch-startup-image" media="(device-height: 568px)">
+        <link href="assets/splashs/splash_iphone_2x.png" rel="apple-touch-startup-image" sizes="640x960" media="(device-height: 480px)">
+
+        {% if project.thumbnailUrl is defined and project.thumbnailUrl is not empty %}
+            {% set thumbnailUrl = project.thumbnailUrl %}
+        {% elseif project.coverImage is defined and project.coverImage is not empty %}
+            {% set thumbnailUrl = project.coverImage %}
+        {% else %}
+            {% set thumbnailUrl = "http://zeega.com/images/default_cover.png" %}
+        {% endif %}
+
+        
+        {% include "ZeegaPublishBundle:Player:meta.html.twig" %}  
+        
+        <meta name="zeega" content="zeega-mobile"
+            data-directory="{{directory}}"
+            data-hostname="{{hostname}}"
+            data-project-id="{{project.id}}"
+            data-user-thumbnail="{{project.user.thumbUrl}}"
+            data-views="{{project.views}}"
+            data-user-id="{{project.user.id}}"
+        />
+
+        <base href="/js/app/player.mobile_1_0/">
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('js/app/player.mobile_1_0/dist/release/index.css') }}">
+        
+
+        {% include '::analytics.html.twig' %}
+
+
+        <script> 
+            // because windows is the worst
+            if (!window.console) console = { log: function() {}};
+            
+            //Project data
+            var projectJSON = "{{ project_data|e('js') }}";
+        </script>
+        
+        <script src="{{ asset('js/app/player.mobile_1_0/dist/release/require.js') }}" ></script>
+    </head>
+
+    <body>
+        <div role="main" id="main"></div>
+        {% include '::eventlogger.base.html.twig' %}
+    </body>
+</html>

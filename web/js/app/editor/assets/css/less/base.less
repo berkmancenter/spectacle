@@ -1,0 +1,92 @@
+.calc( @attr, @fxn ) {
+    @attr: -webkit-calc( @fxn );
+    @attr: -moz-calc( @fxn );
+    @attr: calc( @fxn );
+}
+
+html {
+    background: url(../img/sandpaper.png);
+    height: 100%;
+    overflow: hidden;
+    font-family: "PT Sans";
+}
+
+body {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+#main.modal_dep {
+    -webkit-filter: blur(4px);
+}
+
+
+.col-left,
+.col-middle,
+.col-right {
+    float: left;
+    margin-left: 10px;
+}
+
+.col-left {
+    width: 305px;
+}
+
+.col-middle {
+    width: -webkit-calc( ~"100% - 180px - 315px" );
+    width: -moz-calc( ~"100% - 180px - 315px" );
+    width: calc( ~"100% - 180px - 315px" );
+}
+
+.col-right {
+    width: 150px;
+}
+
+
+.left-column,
+.right-column {
+    height: -webkit-calc( ~"100% - 66px" );
+    height: -moz-calc( ~"100% - 66px" );
+    height: calc( ~"100% - 66px" );
+}
+
+
+.left-column {
+    position: absolute;
+    width: 305px;
+    z-index: 10;
+    // top: 56px;
+    left: 10px;
+    // bottom: 10px;
+}
+
+.edit-box {
+    width: -webkit-calc( ~"100% - 170px" );
+    width: -moz-calc( ~"100% - 170px" );
+    width: calc( ~"100% - 170px" );
+    
+    height: -webkit-calc( ~"100% - 54px" );
+    height: -moz-calc( ~"100% - 54px" );
+    height: calc( ~"100% - 54px" );
+
+    float: left;
+    position: relative;
+    min-width: 450px;
+    .clearfix;
+}
+
+.right-column {
+    left: 327px;
+    min-width: 630px;
+    position: absolute;
+    z-index: 1;
+
+    width: -webkit-calc( ~"100% - 327px" );
+    width: -moz-calc( ~"100% - 327px" );
+    width: calc( ~"100% - 327px" );
+}
+
+.ZEEGA-player {
+    z-index: 100;
+}

@@ -1,0 +1,45 @@
+
+<% if ( show_chrome ) { %>
+
+<a class="tab-wrapper" href="<%= path %>" <% if (window!=window.top ) { %> target="blank" <% } %> data-bypass="true" >
+    <div class="ZEEGA-tab">
+        <div class="ZTab-logo"></div>
+    </div>
+</a>
+
+<% } %>
+
+<div class="menu-right">
+
+   <ul class="social-actions">
+       <li>  
+    
+    <% if ( favorite && authenticated ) { %>
+
+         <a href="#" class="btnz btn-favorite favorited"><i class="icon-heart"></i> <span class="content">favorite</span></a>
+        
+    <% } else if ( authenticated) { %>
+
+        <a href="#" class="btnz btn-favorite"><i class="icon-heart"></i> <span class="content">favorite</span></a>
+
+     <% } %>
+
+        </li>
+    </ul>
+
+    <ul class ="share-network">
+        <li>
+            <a name="twitter" class="social-share-icon" href="<%= share_links.twitter %>" target="blank"><i class="zsocial-twitter"></i></a>
+        </li>
+        <li>
+            <a name="facebook" class="social-share-icon" href="<%= share_links.facebook %>" target="blank"><i class="zsocial-facebook"></i></a>
+        </li>
+        <li>
+            <a name="tumblr" class="social-share-icon" href="<%= share_links.tumblr %>" target="blank"><i class="zsocial-tumblr"></i></a>
+        </li>
+        <!-- <li>
+            <a name="reddit" class="social-share-icon" href="<%= share_links.reddit %>" target="blank"><i class="zsocial-reddit"></i></a>
+        </li> -->
+    </ul>
+
+</div>

@@ -1,0 +1,13 @@
+<div class="viewer-preview" style="
+    background: url(<%= uri %>);
+    background-size: contain;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+"></div>
+<div class="viewer-controls">
+    <a class="add-to-frame image btnz btnz-zeega-this" href="#">+ ADD THIS</a>
+    <a href="<%= attribution_uri %>" target="blank" class="view-original"><i class="icon-share-alt"></i> view original</a>
+    <% if( allowDelete == 1  ) { %>
+        <a class="delete-item" href="#"><i class="icon-remove"></i> delete</a>
+    <% } %>
+</div>

@@ -1,0 +1,37 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN]
+        ANY_ROLE: [IS_AUTHENTICATED_ANONYMOUSLY]
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern:    ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+            logout: true
+            anonymous: true     # default is to allow anonymous access to everything
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/register$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https}
+        - { path: ^/settings$, role: ROLE_USER, requires_channel: https}
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/dashboard, role: ROLE_USER }
+        - { path: ^/settings, role: ROLE_USER }
+        - { path: ^/library, role: ROLE_ADMIN }
+        - { path: ^/editor, role: ROLE_USER, requires_channel: http }
+        - { path: ^/project/new, role: ROLE_USER }
+        - { path: ^/[a-zA-Z0-9]+/remix, role: ROLE_USER }
+        - { path: ^/[a-zA-Z0-9]+$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: http }    # force http for project playback

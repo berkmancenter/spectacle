@@ -1,0 +1,61 @@
+.workspace {
+    position: absolute;
+    min-height: 320px;
+    width: 100%;
+
+    height: -webkit-calc( ~"100% - 33px" );
+    height: -moz-calc( ~"100% - 33px" );
+    height: calc( ~"100% - 33px" );
+
+    overflow: hidden;
+    .clearfix;
+
+    .page-instructions {
+        background: url(../img/workspace-instructions.png);
+        background-size: cover;
+        background-position: center;
+        height: 100%;
+        width: 100%;
+    }
+
+    .workspace-overlay {
+        width: 320px;
+        height: 426px;
+        margin: auto;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 10;
+        position: absolute;
+        background: url(../img/workspace-sheen.png);
+        background-size: cover;
+        background-position: center;
+        opacity: 0.15;
+        border: 1px solid white;
+        border-radius: 10px;
+    }
+
+    .ZEEGA-workspace {
+        overflow: hidden;
+        position: absolute;
+        background: black;
+        width: 320px;
+        height: 426px;
+        margin: auto;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        font-size: 16px;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+
+        border: 15px solid #222;
+        border-radius: 8px;
+
+        &.is-target {
+            box-shadow: 0 0 10px limegreen;
+        }
+    }
+}

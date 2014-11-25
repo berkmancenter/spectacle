@@ -1,0 +1,12 @@
+<div class="viewer-preview" style="">
+    <iframe width="560" height="315" src="http://www.youtube.com/embed/<%= uri %>" frameborder="0" allowfullscreen></iframe>
+</div>
+<div class="viewer-controls">
+    <a class="add-to-frame youtube" href="#"><i class="icon-download"></i> add to page</a>
+    <a href="<%= attribution_uri %>" target="blank"><i class="icon-share-alt"></i> view original</a>
+   
+     <% if( allowDelete == 1  ) { %>
+            <a class="delete-item" href="#"><i class="icon-remove"></i> delete</a>
+    <% } %>
+
+</div>

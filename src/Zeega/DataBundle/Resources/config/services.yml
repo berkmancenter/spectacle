@@ -1,0 +1,28 @@
+parameters:
+    zeega_solr.class: Zeega\DataBundle\Service\SolrService
+    zeega_item.class: Zeega\DataBundle\Service\ItemService
+    zeega_project.class: Zeega\DataBundle\Service\ProjectService
+
+services:
+#    zeega_solr:
+#        class: %zeega_solr.class%
+#        arguments:
+#            solr: "@solarium.client"
+
+    zeega.item:
+        class: %zeega_item.class%
+        arguments:
+            thumbnailService: "@zeega_thumbnail"
+
+    zeega.project:
+        class: %zeega_project.class%
+        arguments:
+            doctrine: "@doctrine_mongodb"
+
+    zeega.doctrine.dateupdate_listener:
+        class: Zeega\DataBundle\EventListener\DateUpdateListener
+        arguments:
+            idService: "@zeega_id"
+        tags:
+            - { name: doctrine_mongodb.odm.event_listener, event: prePersist }
+            - { name: doctrine_mongodb.odm.event_listener, event: preUpdate }

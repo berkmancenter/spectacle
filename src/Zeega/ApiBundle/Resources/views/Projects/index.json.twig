@@ -1,0 +1,11 @@
+{
+    "projects":[
+    {% for project in projects %}
+        {% include 'ZeegaApiBundle:Projects:base.json.twig' with {'project': project} %}    
+        {%- if loop.index0 < projects|length - 1 -%}
+        ,
+        {%- endif -%}
+    {% endfor %}
+    ],
+    {% include 'ZeegaApiBundle:Shared:request.json.twig' with {'request': request} %}
+}

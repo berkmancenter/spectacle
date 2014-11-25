@@ -1,0 +1,18 @@
+[submodule "vendor/mousetrap"]
+	path = vendor/mousetrap
+	url = https://github.com/ccampbell/mousetrap.git
+[submodule "vendor/tipsy"]
+	path = vendor/tipsy
+	url = https://github.com/jaz303/tipsy.git
+[submodule "app/player"]
+	path = app/player
+	url = https://github.com/Zeega/Zeega-Player.git
+[submodule "app/engine"]
+	path = app/engine
+	url = https://github.com/Zeega/Zeega-Parser.git
+[submodule "app/analytics"]
+	path = app/analytics
+	url = https://github.com/Zeega/Analytics-Wrapper.git
+[submodule "app/common"]
+	path = app/common
+	url = https://github.com/Zeega/_zeega.common.git

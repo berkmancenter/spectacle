@@ -1,0 +1,139 @@
+{% set title = title | default('Unknown') %}
+{% set user_id = user_id | default(-1) %}
+{% set displayname = displayname | default('Unknown') %}
+{% set user_thumb = user_thumb | default('Unknown') %}
+{% set local_path = local_path | default('') %}
+{% set profile_id = profile_id | default( '' ) %}
+{% set tags = tags | default( '' ) %}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" style="height:100%" lang="en-US">
+    <head>
+        
+
+        {% include "::meta.html.twig" %}   
+         
+
+
+        <meta name="zeega" content="zeega-home"
+            data-directory="{{directory}}"
+            data-hostname="{{hostname}}"
+            data-api= "{{hostname}}{{directory}}api/"
+            data-root= "{{directory}}"
+            data-tags="{{ tags }}"
+            data-profile-id="{{ profile_id }}"
+            data-user-id="{{user_id}}"
+            data-media-server="https:{{hostname}}{{media_host}}"
+
+        />
+
+        {% block stylesheets %}         
+    
+            {% if app.environment == 'prod' %}
+                <link rel="stylesheet" type="text/css" href="{{ asset('js/app/home/dist/release/index.css') }}">
+            {% else %}
+                <link rel="stylesheet" type="text/css" href="{{ asset('js/app/home/dist/debug/index.css') }}">
+
+            {% endif %}
+                
+            <!-- Including Google's Font -->
+            <link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Lato:400,700' rel='stylesheet' type='text/css'>
+        
+        {% endblock stylesheets %}
+        
+        {% include '::analytics.html.twig' %}
+
+        <script type="text/javascript">
+
+        // Because IE sucks
+            if ( !window.console ) {
+                console = {log: function() {}};
+            }
+
+              var feedData = "{{ feed_data|e('js') }}";
+            {% if profile_data is defined  %}
+              var profileData ="{{ profile_data|e('js') }}";
+            {% endif %}
+        </script>
+        <script type="text/javascript">
+          // Facebook login hack
+          if (window.location.hash == '#_=_'){
+            window.location.hash = '';
+          }
+        </script>
+</head>
+
+  <body>
+
+
+  <header>
+          <a href="{{ path('ZeegaCommunityBundle_home') }}" data-bypass="true" class="ZEEGA-tab">
+              <span class="ZTab-logo"></span>
+          </a>
+
+            <div class="nav col-right navbar">
+            
+              <ul class="pull-right">
+                  <li>
+                      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        {% if user_id != profile_id %}
+                          <a href="{{ path('ZeegaCommunityBundle_dashboard') }}" class="logged-in-user" data-bypass="true" >
+                            <span class="profile-token" 
+                            {% if user_thumb != "" %}
+                                style="background-image: url({{user_thumb}});">
+                            {% endif %}
+                            </span></a>
+                         {% endif %}
+                      {% endif %}  
+                  </li>
+                  <li>
+                       {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                        <a class="btnz login" href="{{ path('fos_user_security_logout') }}">Logout</a> 
+                      {% else %}
+
+                          <a class="btnz login" href="{{ path('fos_user_security_login') }}">Login</a>
+                      
+                      {% endif %}
+                  </li>
+                  <li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+              <a class="btnz create-a-zeega bold-btnz" href="{{ path('ZeegaEditorBundle_new') }}" >New Slideshow</a>
+            {% else %}
+
+              <a class="btnz join bold-btnz" href="{{ path('fos_user_registration_register') }}" >Sign Up</a>
+            
+            {% endif %}
+            </li>
+                 
+              </ul>
+            </div>
+            
+
+            
+          
+
+</header>
+
+  <!-- Main container. -->
+  <div role="main" id="main"></div>
+
+  <!-- Application source. -->
+ 
+  
+{% block player_script %}
+
+
+    {% if app.environment == 'prod' %}
+        <script src="{{ asset('js/app/home/dist/release/require.js') }}" ></script>
+    {% else %}
+        <script src="{{ asset('js/app/home/dist/debug/require.js') }}" ></script>
+    {% endif %}
+
+{% endblock player_script %}
+
+
+
+</body>
+</html>

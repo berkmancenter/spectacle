@@ -1,0 +1,83 @@
+{% block stylesheets %}
+	<script type="text/javascript">
+		window.localStorage.clear();
+	</script>
+	
+  {% include "::meta.html.twig" %}   
+	
+	<!-- DEV ONLY This block is for less to clear its stupid cache. Take out in production -->
+	<script type="text/javascript">
+		window.localStorage.clear();
+	</script>
+	<!-- end DEV ONLY -->
+
+	<style type="text/css">
+    
+        html { 
+            background: url({{asset("images/sandpaper.png")}});
+        }
+
+        .sign-in .form-vertical h4 {
+          color: white;
+        }
+        
+        .sign-in .form-vertical .forget-pwd {
+            color: #CCC;
+        }
+
+        .tagline {
+          font-size: 12px;
+          text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
+          color: white !important;
+          font-weight: bold;
+          font-family: 'Lato', sans-serif;
+          font-style: normal;
+          text-align: center;
+        }
+
+        .sign-in .message {
+          color: white;
+          font-style: normal;
+        }
+    
+    </style>
+
+	<link rel="stylesheet/less" type="text/css" href="{{ asset('css/less/community/bootstrap.less')}}">
+
+	<link href='//fonts.googleapis.com/css?family=Podkova:400,700' rel='stylesheet' type='text/css'> <!-- Including Google's Font -->
+	<link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" language="Javascript" src="{{ asset('js/lib/less-1.3.0.min.js') }}"></script>
+	
+{% endblock stylesheets %}
+
+<!-- Page Content Begins -->
+	
+	<div class="container sign-in">
+        <div class='sign-in-head'>
+            <a class="brand" href="{{path('ZeegaCommunityBundle_home')}}">
+            <img src="{{ asset('images/spectacle.png') }}" alt="Spectacle Logo" width="350" height="37">
+            </a>
+        
+            <h2 class="tagline">A SLIDESHOW MACHINE FOR HARVARD LIBRARY IMAGES</h2>
+        </div>
+	
+				<h2 class='message'>Forgot your password? It's ok.</h2>
+				<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request form-vertical">
+				    <div>
+				        {% if invalid_username is defined %}
+				            <h2 style="color:yellow">{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</h2>
+				        {% endif %}
+				        <h4>Email Address</h4>
+				        <div class="controls" style="margin-bottom:0">
+				        	<input type="text" id="username" name="username" class="input-xlarge" style='width:100%'/>
+				    	</div>
+				    </div>
+				    <div>
+				    	<button type="submit" class="btn btn-success btn-custom" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}"><h4>Submit</h4></button>
+				        <!--<input class="btn btn-success btn-custom" type="submit" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" />-->
+				    </div>
+				</form>
+	
+	</div>
+
+

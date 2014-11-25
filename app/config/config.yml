@@ -1,0 +1,124 @@
+imports:
+    - { resource: parameters.ini }
+    - { resource: security.yml }
+    - { resource: @ZeegaIngestionBundle/Resources/config/services.yml }
+    - { resource: @ZeegaSocialBundle/Resources/config/services.yml }
+
+framework:
+    secret:          %secret%
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: %kernel.debug%
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale: %locale%
+    trusted_proxies:  ['128.103.64.74','192.168.10.74']
+    session:
+        handler_id: session.handler.memcached
+    fragments:        ~
+    translator: { fallback: en }
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+    globals:
+        hostname: %hostname%
+        media_host: %media_host%
+        directory: %directory%
+        web_directory: %web_directory%
+        event_logger_host: %event_logger_host%
+        event_logger_host_web: %event_logger_host_web%
+        ga_tracking: %ga_tracking%
+doctrine:
+    dbal:
+        charset: UTF8
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    bundles:        [ ]
+    filters:
+        cssrewrite: ~
+
+doctrine_mongodb:
+    connections:
+        default:
+            server: %mongodb_host%
+
+    default_database: %mongodb_database%
+    document_managers:
+        default:
+            auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+    spool:     { type: memory }
+    auth_mode:  login
+
+fos_user:
+    db_driver: mongodb # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Zeega\DataBundle\Document\User
+    from_email:
+        address: %mailer_email%
+        sender_name: Zeega
+    registration:
+        form:
+            handler: zeega_user.form.handler.registration
+            type: zeega_user_registration
+            validation_groups: [ZeegaRegistration]
+        confirmation:
+            enabled:    false
+
+    resetting:
+        form:
+            handler: zeega_user.form.handler.resetting
+        email:
+            template: ZeegaUserBundle:Email:resetting.email.twig
+
+# fos rest requirement
+sensio_framework_extra:
+    view:
+        annotations: false
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+
+        sonata.block.service.text:
+        sonata.block.service.action:
+        sonata.block.service.rss:
+
+mobile_detect:
+    redirect:
+        mobile: ~
+        tablet: ~
+    switch_device_view: ~
+    service:
+        mobile_detector: zeega_mobile_detect
+    extension_class: Zeega\CoreBundle\Helpers\NeverMobileExtension
+
+services:
+    session.memcached:
+        class: Memcached
+        arguments:
+            persistent_id: %session_memcached_prefix%
+        calls:
+              - [ addServer, [ %session_memcached_host%, %session_memcached_port% ]]
+
+    session.handler.memcached:
+        class: Symfony\Component\HttpFoundation\Session\Storage\Handler\MemcachedSessionHandler
+        arguments:
+            - "@session.memcached"
+            - { prefix: "%session_memcached_prefix%", expiretime: "%session_memcached_expire%" }

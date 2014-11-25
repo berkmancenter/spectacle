@@ -1,0 +1,148 @@
+.page-register {
+  background-image: url(../img/spectacle.png), url(../img/sandpaper.png);
+  background-repeat: no-repeat, repeat;
+  background-position: 60px 25px, 0;
+  background-color: #343434;
+  height: 108px;
+
+
+    #register {
+        position: relative;
+    }
+
+    .bg-overlay {
+        background: url("../img/tiny-stripes.png");
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+    }
+
+    fieldset {
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        padding: 20px;
+    }
+
+    .container-inner {
+        width: 450px;
+        color: white;
+        text-align: center;
+        background: rgba(255,255,255,0.55);
+        margin: 0 auto;
+        margin-top: 70px;
+        padding: 40px 20px;
+        border-radius: 2px;
+    }
+
+    .container .btnz {
+        font-size: 1.5em;
+    }
+
+    .container h1 {
+        margin: 0 0 60px 0;
+    }
+
+    .container h3 {
+        margin: 0 0 1em 0;
+    }
+
+    .col-left {
+        float: left;
+        width: 46%;
+    }
+
+    .col-left .btnz {
+        width: 75%;
+        display: block;
+        padding-bottom: 18px;
+        text-align: left;
+        margin-bottom: 10px
+    }
+
+    .col-left .btnz .social-signin-twitter,
+    .col-left .btnz .social-signin-facebook {
+        margin: 0 10px;
+    }
+
+    .col-middle {
+        float: left;
+    }
+
+    .col-right {
+      text-align: center;
+    }
+
+    input {
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        width: 75%;
+        font-size: 1.1em;
+        padding: 5px 10px;
+        border-radius: 2px;
+    }
+
+    .login-link {
+        display: inline-block;
+        width: 75%;
+        margin-bottom: 10px;
+    }
+
+    .login-link img {
+        width: 100%;
+    }
+
+    .fine-print {
+        font-size: 10px;
+        color: #999;
+    }
+
+    .errors ul {
+        color: red;
+    }
+
+    .help-block {
+        font-family: "helvetica", sans-serif;
+        font-size: 12px;
+        position: absolute;
+        top: -20px;
+        display: none;
+
+        .valid {
+            color: limegreen;
+        }
+        .invalid {
+            color: orangered;
+        }
+    }
+
+    .btnz-submit {
+        width: 307px;
+        background-color: limegreen;
+        padding: 20px;
+        display: inline-block;
+        padding-top: 10px;
+
+        &:hover {
+            background-color: #6FF;
+        }
+    }
+
+    .form-error-message {
+        font-size: 12px;
+        color: red;
+        position: relative;
+        top: -7px;
+    }
+
+    .form-success-message {
+        font-size: 12px;
+        color: limegreen;
+        position: relative;
+        top: -7px;
+    }
+    
+}

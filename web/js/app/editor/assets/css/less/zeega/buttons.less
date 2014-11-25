@@ -1,0 +1,114 @@
+.btnz{
+    background: url(../img/tiny-stripes-dark.png);
+    background-color: #888888;
+    border-radius: 2px;
+    padding: 5px 10px;
+    font-size: 15px;
+    top: 0;
+    height: 20px;
+    color: white;
+    text-align: center;
+    font-family: "futura", sans-serif;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    display: inline-block;
+
+    &:hover {
+        box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.25);
+    }
+
+    &.join-zeega{
+        font-size: 25px;
+        background-color: red;
+        padding: 10px 10px;
+    }
+
+    &.delete-zeega{
+        padding: 5px 8px;
+    }
+
+    &.btnz-light {
+        background-color: rgba(255,255,255,0.5);
+        color: #444;
+
+        &:hover {
+            background-color: rgba(255,255,255,0.95);
+        }
+    }
+
+    &.btnz-red {
+        background-color: #FF0001;
+    }
+
+    &.btnz-green,
+    &.btnz-success {
+        background-color: limegreen;
+        color: #white;
+    }
+
+    &.login{
+        background-color: rgba(136,136,136,0.8);
+        z-index: 2;
+
+        &:hover{
+            background-color: rgba(136,136,136,1);
+        }
+    }
+
+    &.bold-btnz{
+        position: fixed;
+        z-index:2;
+        margin: 10px 25px 0 0;
+        right: 0;
+        background-color: rgba(255,0,0,.8);
+        &:hover{
+                background-color: red;
+        }
+        &.join {
+            width: 56px;
+        }
+        &.create-a-zeega {
+            width: 154px;
+        }
+    }
+
+    &.btnz-disabled {
+        background-color: #ccc !important;
+        box-shadow: none;
+        pointer-events: none;
+    }
+
+    &.btnz-flat {
+        box-shadow: none;
+    }
+
+    &.btnz-facebook {
+        background-color: #3a589d;
+
+        .social-signin-facebook {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background-size: 50px 25px;
+            background-image: url('../img/social-signin.png');
+            position: relative;
+            top: 4px;
+        }
+    }
+
+    &.btnz-twitter {
+        background-color: #3b8ece;
+
+        .social-signin-twitter {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background-size: 50px 25px;
+            background-position: -25px 0;
+            background-image: url('../img/social-signin.png');
+            position: relative;
+            top: 4px;
+        }
+    }
+}

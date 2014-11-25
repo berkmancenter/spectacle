@@ -1,0 +1,90 @@
+.media-upload-tab {
+    color: grey;
+    font-size: 15px;
+    padding-top: 6px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-left: 0;
+}
+
+
+.media-upload {
+
+    clear: both;
+    padding: 10px 0;
+    font-size: 14px;
+
+    a:link, a:visited, a:hover, a:active {
+        color: white;
+    }
+
+    a {
+        opacity: 0.75;
+        &:hover{
+            opacity: 1;
+        }
+    }
+    a.active {
+        opacity: 1;
+    }
+
+
+    .upload-file {
+
+    }
+
+    .paste-url {
+        display: none;
+    }
+
+    .url-box {
+        width: 100%;
+        border: 0;
+    }
+    
+    .upload-progress{
+        position: absolute;
+        width: 0px;
+        height: 32px;
+        background: rgba(256, 256, 256, 0.5);
+        margin: -7px;
+    }
+
+    .upload-chooser{
+        margin: 0 auto;
+        width: 124px;
+        margin-bottom: -10px;
+        margin-top: 5px;
+    }
+
+    #imagefile{
+        cursor: pointer;
+    }
+
+    .paste-url{
+        padding: 9px 0;
+    }
+    .upload-instructions{
+        text-align: center;
+        width: 269px;
+    }
+    .upload-file{
+        &:hover{
+             border: 1px dashed #FF0001;
+        }
+        cursor: pointer;
+        border: 1px dashed white;
+        padding: 8px;
+        span {
+            position: absolute;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        input {
+            opacity: 0;
+        }
+
+    }
+
+}

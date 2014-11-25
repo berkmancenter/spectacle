@@ -1,0 +1,137 @@
+.ZEEGA-item-collection-viewer {
+    background-image: url(../img/tiny-stripes-dark.png);
+    background: -moz-linear-gradient(top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.75) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.9)), color-stop(100%,rgba(0,0,0,0.75))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.75) 100%); /* Chrome10+,Safari5.1+ */
+
+
+    .modal-title {
+        top: -41px;
+        position: absolute;
+        background: rgba(0,0,0,0.5);
+        color: white;
+        padding: 5px 20px;
+        border-radius: 2px;
+        width: 100%;
+    }
+
+    .modal-description {
+        font-size: 0.75em;
+        color: #FFF;
+        position: absolute;
+        bottom: 0;
+        background: rgba(131, 131, 131, 0.81);
+        z-index: 2;
+        width: 50%;
+        padding: 1em;
+    }
+
+    .modal-close {
+        right: 10px;
+        top: 5px;
+    }
+
+    .modal-content {
+        width: calc(~"100% - 100px");
+        height: calc(~"100% - 100px");
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+
+        .modal-body {
+            border: 0;
+            position: absolute;
+            display: block;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: rgba(255,255,255,0.9);
+            border-radius: 2px;
+
+            .item-viewer {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+
+                .viewer-preview {
+                    height: 100%;
+                    width: 100%;
+                }
+
+                iframe {
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                    position: absolute;
+                }
+            }
+
+            .view-original {
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+                background: rgba(131, 131, 131, 0.81);
+                padding: 3px 16px 5px 8px;
+                color: white;
+
+                .icon-share-alt {
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+
+}
+
+.item-viewer-image {
+
+    .viewer-preview {
+        height: 300px;
+    }
+
+    .preview-audio {
+        width: 100%;
+    }
+}
+
+.item-viewer-audio {
+
+    .preview-audio {
+        width: 100%;
+    }
+}
+
+.item-viewer-video {
+    text-align:center;
+}
+
+
+.viewer-controls {
+    margin-top: 10px;
+    margin-bottom: -10px;
+
+    .delete-item {
+        float:right;
+    }
+}
+
+.add-to-frame {
+    position: absolute;
+    top: 10px;
+    top: 10px;
+    left: -10px;
+    font-size: 20px;
+    height: 26px;
+    opacity: 0.95;
+
+    &.disabled {
+        background-color: rgba(150,150,150,0.5);
+        color: rgba(255,255,255,0.5);
+    }
+}

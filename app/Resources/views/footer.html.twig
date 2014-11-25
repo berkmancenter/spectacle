@@ -1,0 +1,39 @@
+{% block head %}
+<style>
+  @font-face {
+    font-family: 'Apercu';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Apercu'), url({{ asset('/fonts/apercu_regular-web.woff') }}) format('woff2');
+  }
+
+  .footer .ll-logo {
+      margin-bottom: 24px;
+  }
+  .footer p {
+      max-width: 700px;
+      line-height: 2em;
+      margin: 0 auto;
+  }
+  .footer a {
+      text-decoration: underline;
+  }
+  .footer {
+    margin: 45px auto 10px;
+    width: 940px;
+    border-top: 2px solid black;
+    padding-top: 30px;
+    text-align: center;
+    font-family: "Apercu", sans-serif;
+    background-color: inherit;
+    border: 0;
+  }
+</style>
+{% endblock head %}
+
+<div class="footer">
+  <img src="{{ asset('images/LL_mini.png') }}" alt="Library Lab Logo" class="ll-logo" />
+  <p>
+  Thanks to the generous support of the <a href="http://lab.library.harvard.edu/">Harvard Library Lab</a>, the <a href="https://osc.hul.harvard.edu">Harvard Library Office for Scholarly Communication</a>, the <a href="http://cyber.law.harvard.edu">Berkman Center for Internet &amp; Society</a> and the <a href="http://www.arcadiafund.org.uk">Arcadia Fund</a>.
+  </p>
+</div>

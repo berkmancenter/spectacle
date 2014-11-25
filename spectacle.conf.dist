@@ -1,0 +1,25 @@
+<VirtualHost *:80>
+    ServerName spectacle.example.com
+    DocumentRoot /var/www/spectacle/web
+
+    <Directory /var/www/spectacle/web>
+      # enable the .htaccess rewrites
+      AllowOverride All
+      Require all granted
+    </Directory>
+</VirtualHost>
+
+<VirtualHost *:443>
+    ServerName spectacle.example.com
+    DocumentRoot /var/www/spectacle/web
+
+    <Directory /var/www/spectacle/web>
+      # enable the .htaccess rewrites
+      AllowOverride All
+      Require all granted
+    </Directory>
+
+    SSLEngine on
+    SSLCertificateFile /etc/apache2/ssl/spectacle.crt
+    SSLCertificateKeyFile /etc/apache2/ssl/spectacle.key
+</VirtualHost>

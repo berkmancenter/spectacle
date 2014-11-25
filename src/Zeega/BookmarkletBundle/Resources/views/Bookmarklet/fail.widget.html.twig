@@ -1,0 +1,25 @@
+
+
+{# src/Zeega/\CoreBundle\/Resources/views/Widget/fail.widget.html.twig #}
+
+{% extends '::widget.base.html.twig' %}
+
+{% block title %}Zeega Alpha{% endblock %}
+
+{% block body %}
+	<div id="widget-wrapper" data-id="{{widget_id}}"> 
+		<div id="item-view">
+		</div>
+		</div>
+		<div style="margin-top:80px; color: white; font-size: 11pt; padding:20px;">
+		{% if urlmessage == "" %}
+			<p>We cannot seem to add this media to Zeega. Is it possible that you've made it private?</p>
+		{% else %}
+			<p>We cannot seem to add this media to Zeega. {{urlmessage}}</p>
+		{% endif %}
+		<p>Currently, Zeega supports public files on YouTube, Flickr, SoundCloud, Tumblr, Instagram and URLs that end in .jpg, .gif, .png, .mp3 and .mp4.</p>
+		</div>
+	</div><!--#widget-wrapper-->
+	
+{% endblock %}
+{% block scripts %}{% endblock %}

@@ -1,0 +1,108 @@
+@image-folder: '../img';
+
+
+[class^="itemz-"] {
+  
+  background-image: url('@{image-folder}/sprite-item-citations-white.png');
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-size: 20px 200px;
+}
+
+.itemz-mixin(@position) {
+  background-position: (0px) (@position*-20px);
+}
+.itemz-twitter        { .itemz-mixin(1) }
+.itemz-facebook       { .itemz-mixin(2) }
+.itemz-instagram         { .itemz-mixin(3) }
+.itemz-flickr          { .itemz-mixin(4) }
+.itemz-soundcloud          { .itemz-mixin(5) }
+.itemz-tumblr          { .itemz-mixin(6) }
+.itemz-giphy          { .itemz-mixin(7) }
+.itemz-youtube          { .itemz-mixin(8) }
+.itemz-harvard          { .itemz-mixin(9) }
+
+
+[class^="zsocial-"] {
+  
+  background-image: url('@{image-folder}/sprite-social-share-33.png');
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 33px;
+  width: 33px;  
+}
+
+.zsocial-mixin(@position) {
+  background-position: (@position*-33px) (0px);
+  &:hover {
+    background-position: (@position*-33px) (-34px);
+  }
+}
+.zsocial-twitter        { .zsocial-mixin(0) }
+.zsocial-facebook       { .zsocial-mixin(1) }
+.zsocial-tumblr         { .zsocial-mixin(2) }
+.zsocial-reddit         { .zsocial-mixin(3) }
+
+
+
+[class^="zitem-"] {
+  
+  background-image: url('@{image-folder}/zitems-50px.png');
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 50px;
+  vertical-align: text-top;
+  width: 50px;  
+  
+  &.zitem-30
+  {
+    background-image: url('@{image-folder}/zitems-30px.png');
+    height: 30px;
+    width: 30px;
+  }
+}
+
+.zitem-mixin(@position) {
+  
+  background-position: (-50px)  (@position*-50px);
+  
+  &.loaded {      background-position: (0)      (@position*-50px) }
+  &.loaded {      background-position: (-100px) (@position*-50px) }
+  &.zitem-30 {
+    background-position:            (-30px) (@position*-30px);
+    &.loaded { background-position: (0)     (@position*-30px) }
+    &.error { background-position:  (-60px) (@position*-30px) }
+  }
+}
+
+.zitem-zeega00            { .zitem-mixin(0) }
+.zitem-zeega01            { .zitem-mixin(1) }
+
+.zitem-flickr             { .zitem-mixin(2) }
+.zitem-vimeo              { .zitem-mixin(3) }
+.zitem-youtube            { .zitem-mixin(4) }
+.zitem-twitter            { .zitem-mixin(5) }
+.zitem-facebook           { .zitem-mixin(6) }
+.zitem-google             { .zitem-mixin(7) }
+.zitem-lastfm             { .zitem-mixin(8) }
+.zitem-tumblr             { .zitem-mixin(9) }
+.zitem-rss                { .zitem-mixin(10) }
+.zitem-picasa             { .zitem-mixin(11) }
+.zitem-audio              { .zitem-mixin(12) }
+.zitem-geo                { .zitem-mixin(13) }
+.zitem-image              { .zitem-mixin(14) }
+.zitem-video              { .zitem-mixin(15) }
+.zitem-dropbox            { .zitem-mixin(16) }
+.zitem-soundcloud         { .zitem-mixin(17) }
+.zitem-mapbox             { .zitem-mixin(18) }
+.zitem-absolute           { .zitem-mixin(19) }
+.zitem-internetarchive    { .zitem-mixin(20) }
+.zitem-documentcloud      { .zitem-mixin(21) }
+.zitem-testamonial        { .zitem-mixin(22) }
+.zitem-instagram          { .zitem-mixin(23) }
+.zitem-giphy              { .zitem-mixin(24) }

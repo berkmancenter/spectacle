@@ -1,0 +1,29 @@
+parameters:
+#    zeega_user.example.class: Zeega\UserBundle\Example
+
+services:
+    zeega.admin.user:
+        class: Zeega\AdminBundle\AdminEntity\UserAdmin
+        arguments:
+            - ~
+            - Zeega\DataBundle\Document\User
+            - 'SonataAdminBundle:CRUD'
+        tags:
+            - { name: sonata.admin, alias: zeega_admin_user, manager_type: doctrine_mongodb, group: General, label: Users}
+    zeega.admin.item:
+        class: Zeega\AdminBundle\AdminEntity\ItemAdmin
+        arguments:
+            - ~
+            - Zeega\DataBundle\Document\Item
+            - 'SonataAdminBundle:CRUD'
+        tags:
+            - { name: sonata.admin, manager_type: doctrine_mongodb, group: General, label: Items}
+
+    zeega.admin.project:
+        class: Zeega\AdminBundle\AdminEntity\ProjectAdmin
+        arguments:
+            - ~
+            - Zeega\DataBundle\Document\Project
+            - 'SonataAdminBundle:CRUD'
+        tags:
+            - { name: sonata.admin, manager_type: doctrine_mongodb, group: General, label: Project}

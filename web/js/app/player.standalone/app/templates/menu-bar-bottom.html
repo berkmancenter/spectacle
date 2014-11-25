@@ -1,0 +1,43 @@
+<div class="ZEEGA-chrome-metablock">
+    <div class="meta-inner">
+        <div class="left-col">
+            <a class="profile-link" href="<% path %>@<%= currentProject.user.username %>" <% if (window!=window.top) { %> target="blank" <% } %> data-bypass="true">
+                <div class="profile-token"
+                    style="
+                        background-image: url(<%= currentProject.user.thumbnail_url %>);
+                        background-size: cover;
+                    "
+                ></div>
+            </a>
+            <div class="username">
+              <a class="profile-name profile-link" href="<% path %>@<%= currentProject.user.username %>" data-bypass="true" <% if (window!=window.top) { %> target="blank" <% } %> title="<%= currentProject.user.display_name %>">
+                    <%= currentProject.user.display_name %>
+                </a>
+            </div>
+            <div class="counts">
+                <div class="zeega-favorite_count"><%= favorites %></div>
+                <span class="zeega-views">
+                  <i class="icon-play icon-white"></i>
+                  <% if ( !_.isNumber( currentProject.views ) ) { currentProject.views = 0 ;} %><%= currentProject.views %> <% if ( currentProject.views != 1 ) { %>views<% } else { %>view<% } %></span>
+            </div>
+        </div>
+        <!--
+        <div class="right-col">
+            <div class="caption"><%= currentProject.title %></div>
+        </div>
+        -->
+
+        <a href="#" class="ZEEGA-fullscreen"></a>
+
+        <div class="citation-soundtrack">
+            <a class="citation-trackback"><i class="itemz-soundcloud"></i></a>
+            <a href="#" class="play-pause"><i class="pp-btn pause"></i></a>
+        </div>
+
+        <div class="citations">
+            <ul></ul>
+        </div>
+
+        <a href="#" class="ZEEGA-home"></a>
+    </div>
+</div>

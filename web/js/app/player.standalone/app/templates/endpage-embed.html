@@ -1,0 +1,8 @@
+<div class="endpage-embed-inner">
+    <a href="<%= path %>@<%= user.username %>" class="btnz watch-more" target="blank" data-bypass="true">Explore more Zeegas by <%= user.display_name %></a>
+    <% if ( authenticated ) { %>
+    <a href="<%= path %>project/new" class="btnz create-zeega" target="blank" data-bypass="true">Create Your Own Zeega</a>
+    <% } else { %>
+    <a href="<%= path %>register" class="btnz create-zeega" target="blank" data-bypass="true">Create Your Own Zeega</a>
+    <% } %>
+</div>

@@ -1,0 +1,43 @@
+@mediumSize: 40px;
+@smallSize: 23px;
+@tinySize: 10px;
+
+.user-token {
+
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    border-radius: 28px;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    border: 3px solid orangered;
+
+    &.token-medium {
+        height: @mediumSize;
+        width: @mediumSize;
+        border: 3px solid orangered;
+    }
+    &.token-small {
+        height: @smallSize;
+        width: @smallSize;
+        border: 2px solid;
+        border-color: #444;
+        transition: border-color 0.5s;
+        -webkit-transition: border-color 0.5s;
+
+        &:hover {
+            border-color: orangered;
+            transition: border-color 0.5s;
+            -webkit-transition: border-color 0.5s;
+        }
+    }
+    &.token-tiny {
+        height: @tinySize;
+        width: @tinySize;
+        border: 2px solid #444;
+    }
+}

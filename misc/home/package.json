@@ -1,0 +1,15 @@
+{
+  "name": "Zeega editor",
+  "version": "0.0.1",
+
+  "jam": {
+    "packageDir": "./vendor/jam",
+    "baseUrl": "./app",
+
+    "dependencies": {
+      "backbone": "*",
+      "jquery": "*",
+      "lodash": "*"
+    }
+  }
+}

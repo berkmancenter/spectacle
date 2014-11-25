@@ -1,0 +1,56 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block header %}
+
+{% endblock header %}
+
+{% block stylesheets %}
+    
+    {% include "::meta.html.twig" %}   
+    
+
+    <style type="text/css">
+    
+        /*
+            Background image code lives here, not in CSS, because this is specific to each page
+            and could be made dynamic too (i.e. randomly picking a different image each load)
+            quite easily. Exposing the code here should be helpful.
+        */
+        html { 
+            background: url({{asset("images/sandpaper.png")}});
+        }
+    
+        .tagline {
+          font-size: 12px;
+          text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
+          color: white !important;
+          font-weight: bold;
+          font-family: 'Lato', sans-serif;
+          font-style: normal;
+          text-align: center;
+        }
+    
+    </style>
+
+    {% if app.environment == 'dev' %}
+                <link rel="stylesheet/less" type="text/css" href="{{ asset('css/less/community/bootstrap.less')}}">
+                <script type="text/javascript" src="{{ asset('js//lib/less-1.3.0.min.js')}}"></script>
+                <script> /* Provisory for dev environment: */ localStorage.clear(); </script>
+    {% else %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/zeega.community.css')}}">
+    {% endif %}
+
+
+
+
+    <link href='//fonts.googleapis.com/css?family=Podkova:400,700' rel='stylesheet' type='text/css'> 
+    <link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+
+    
+{% endblock stylesheets %}
+
+{% block fos_user_content %}
+    {% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+{% endblock fos_user_content %}
+{% block footer %}
+
+{% endblock footer %}

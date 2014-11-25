@@ -1,0 +1,45 @@
+zeega_social:
+    resource: "@ZeegaSocialBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ZeegaUserBundle:
+    resource: "@ZeegaUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ZeegaAdminBundle:
+    resource: "@ZeegaAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+api:
+    resource: "@ZeegaApiBundle/Resources/config/routing.yml"
+
+#admin:
+#    resource: "@ZeegaAdminBundle/Resources/config/routing.yml"
+
+ZeegaBookmarkletBundle:
+    resource: "@ZeegaBookmarkletBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ZeegaCommunityBundle:
+    resource: "@ZeegaCommunityBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ZeegaEditorBundle:
+    resource: "@ZeegaEditorBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ZeegaDiscoveryBundle:
+    resource: "@ZeegaDiscoveryBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ZeegaDataBundle:
+    resource: "@ZeegaDataBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ZeegaCoreBundle:
+    resource: "@ZeegaCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+zeega_publish:
+    resource: "@ZeegaPublishBundle/Resources/config/routing.yml"
+    prefix:   /

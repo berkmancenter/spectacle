@@ -1,0 +1,29 @@
+<% if ( model !== false && canplayMpeg ) { %>
+<a href="#" class="playpause paused"></a>
+<% } %>
+<canvas class="progress" height="80" width="80"></canvas>
+
+<div class="soundtrack-waveform"
+    
+<% if ( model ) { %>
+    style=" background: url(<%= attr.thumbnail_url %>);
+    background-size: 100% 100%"
+<% } %>
+></div>
+
+<% if ( model === false ) { %>
+    <span class="soundtrack-drop-icon"
+        title="drag audio to add soundtrack"
+        data-gravity="ne"
+    ></span>
+    <span class="soundtrack-sub">soundtrack</span>
+<% } else { %>
+    <div class="soundtrack-controls">
+
+        <div class="audio-wrapper"></div>
+            <a href="#" class="remove"
+                title="remove soundtrack"
+                data-gravity="n"
+            ><i class="icon-remove icon-white"></i></a>
+    </div>
+<% } %>

@@ -1,0 +1,188 @@
+<a href="<%= web_root %>" class="ZEEGA-tab">
+    <span class="ZTab-logo"></span>
+</a>
+
+<div class="nav-wrapper">
+    <div class="nav col-left navbar">
+        <ul class='pull-left'>
+            <li>
+                <a href="<%= web_root %>profile/<%= userId %>"
+                    class="profile-link"
+                    title="my profile"
+                    data-gravity="n"
+                    ><span class="user-token"
+                        style="
+                            background-image:url(<%= userThumbnail %>);
+                            background-size: cover;
+                        "
+                    ></span></a>
+            </li>
+            <li>
+                <a href="#" class="editor-help btnz btnz-light"
+                    title="view instructions"
+                    data-gravity="n"
+                >Help</a>
+            </li>
+           
+        </ul>
+    </div>
+
+    <% if ( remix.remix ) { %>
+        <div class="nav col-center remix-header">
+            <ul>
+                <li>
+                    Remixing
+                    <a href="<%= web_root %><%= remix.parent.id %>" target="blank" data-bypass="true">
+                        <div class="project-cover project-cover-tiny" style="
+                                background:url(<%= remix.parent.cover_image %>);
+                                background-position: center;
+                                background-repeat: no-repeat;
+                                -webkit-background-size: cover;
+                                -moz-background-size: cover;
+                                -o-background-size: cover;
+                                background-size: cover;
+                            "></div>
+                        </a>
+                    by <%= remix.parent.user.display_name %>
+                    <div class="profile-token profile-token-tiny" style="
+                            background:url(<%= remix.parent.user.thumbnail_url %>);
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            -webkit-background-size: cover;
+                            -moz-background-size: cover;
+                            -o-background-size: cover;
+                            background-size: cover;
+                        "></div>
+                </li>
+               
+            </ul>
+        </div>
+    <% } %>
+
+    <ul class="nav-buttons-right">
+        
+        <li>
+            <span class="saving-indicator btnz btnz-transparent"></span>
+        </li>
+
+        <li>
+        <a href="<%= web_root %><%= id %>" class="project-preview btnz btnz-green"
+                title="see what you're making"
+                data-gravity="n"
+            ><i class="icon-play icon-white"></i> Play</a>
+        </li>
+
+        <li>
+            <a href="#" class="project-share btnz btnz-blue btnz-fullwidth"
+                title="Slideshow settings"
+                data-gravity="n"
+            ><i class="icon-wrench icon-white"></i> Settings</a>
+        </li>
+    </ul>
+
+</div>
+
+<div class="share-grave">
+
+    <div class="close-wrapper">
+        <a href="#" class="close-grave">&times;</a>
+    </div>
+
+    <div class="grave-inner">
+
+        <div class="share-meta">
+            <div class="cover-image-wrapper">
+                <div class="project-cover" style="
+                    background: url(<%= cover_image %>);
+                    background-size: cover;
+                "></div>
+                <div class="caption-info">Drag cover image here</div>
+            </div>
+            <div class="caption-side">
+                <textarea id="project-caption" placeholder="Caption your slideshow before sharing" maxlength="80"><%= title %></textarea>
+                <div class="caption-info">80 character limit</div>
+            </div>
+        </div>
+
+
+        <div class="share-tab-content">
+            <div class="share-slideshow share-window active">
+              <div>
+                <label for="autoplay">Advance the slideshow automatically</label>
+                <input name="autoplay" type="checkbox" <% if (autoplay) { %>checked="checked"<% } %> id="autoplay"/>
+              </div>
+              <div>
+                <label for="autoplay-duration">Duration between slide changes</label>
+                <input name="autoplay-duration" type="text" id="autoplay-duration" value="<%= autoplay_duration %>"/>
+              </div>
+              <div>
+                <label for="show-metadata">Always show metadata
+                <input name="show-metadata" type="checkbox" <% if (show_metadata) { %>checked="checked"<% } %> id="show-metadata"/>
+                </label>
+              </div>
+            </div>
+            <div class="share-network share-window">
+
+                <div>
+                    <a name="twitter" href="<%= share_links.twitter %>"
+                            class="social-share share-twitter"
+                            data-itemid="<%= id %>"
+                            target="blank">
+                        <i class="social-share-twitter social-share-color"></i>
+                    </a>
+                    <a name="facebook" href="<%= share_links.facebook %>"
+                                    class="social-share share-facebook"
+                                    data-itemid="<%= id %>"
+                                    target="blank">
+                        <i class="social-share-facebook social-share-color"></i>
+                    </a>
+                    <a name="tumblr" id ="tumblr-share" href="<%= share_links.tumblr %>" 
+                                    class="social-share share-tumblr"
+                                    data-itemid="<%= id %>"
+                                    target="blank">
+                        <i class="social-share-tumblr social-share-color"></i>
+                    </a>
+                    <!--
+                    <a name="reddit" id ="reddit-share" href="<%= share_links.reddit %>" 
+                                    class="social-share share-reddit"
+                                    data-itemid="<%= id %>"
+                                    target="blank">
+                        <i class="social-share-reddit social-share-color"></i>
+                    </a>
+                -->
+                </div>
+
+                <div>
+                    <input name="permalink" class="text-box" type="text" value="<%= web_root %><%= id %>" readonly></input>
+                </div>
+
+            </div>
+            <div class="share-embed share-window">
+                <div>
+                    <p>Use this snippet of code to showcase your slideshow on your own site</p>
+                </div>
+                <div>
+                    <input name="embed" class="text-box" type="text" value='<iframe src="<%= web_root %><%= id %>/embed" width="400px" height="480px" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'></input>
+                </div>
+                
+            </div>
+
+        </div>
+
+        <div class="share-tabs">
+            <ul>
+                <li>
+                    <a href="#" class="slideshow-zeega active">Slideshow Settings</a>
+                </li>
+                <li>
+                    <a href="#" class="share-zeega">Share your slideshow</a>
+                </li>
+                <li>
+                    <a href="#" class="embed-zeega">Embed</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>

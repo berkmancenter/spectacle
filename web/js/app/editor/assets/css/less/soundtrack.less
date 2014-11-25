@@ -1,0 +1,128 @@
+.soundtrack {
+    width: 80px;
+    height: 80px;
+    float: left;
+    border-radius: 2px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.25);
+    background-color: rgba(0,0,0,0.1);
+    border: 1px solid @interfacePrimary;
+    background: url(../img/tiny-stripes.png);
+    
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    color: #FF0001;
+    position: relative;
+    margin-right: 10px;
+
+    .playpause {
+        float: left;
+        background: url(../img/audio-sprites.png);
+        height: 40px;
+        width: 40px;
+        display: block;
+        z-index: 10;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-size: 40px 200px;
+        background-position: 0 -40px;
+        opacity: 0.5;
+
+        -moz-transition: none;
+        -webkit-transition: none;
+        -o-transition: color 0 ease-in;
+        transition: none;
+
+        &.playing {
+            background-position: 0px 0px;
+        }
+
+        &.paused {
+            background-position: 0px -40px;
+            -moz-transition: none;
+            -webkit-transition: none;
+            -o-transition: color 0 ease-in;
+            transition: none;
+        }
+    }
+
+    &:hover {
+        .playpause {
+            opacity: 0.85;
+
+            &.playing {
+                background-position: 0px -40px;
+            }
+            &.paused {
+                background-position: 0px 0px;
+            }
+        }
+    }
+
+    .progress {
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 10000;
+        pointer-events: none;
+    }
+
+    .soundtrack-waveform {
+        background: transparent;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+    }
+
+    .soundtrack-sub {
+        position: relative;
+        top: 63px;
+        color: white;
+    }
+
+    .soundtrack-controls {
+        position: absolute;
+        top: 0;
+        background: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        text-align: right;
+
+        a {
+            position: relative;
+            display: inline-block;
+            height: 100%;
+            padding: 0 5px;
+        }
+
+        i {
+            vertical-align: middle;
+        }
+    }
+
+    .soundtrack-drop-icon {
+        height: 100%;
+        width: 100%;
+        background-image: url( ../img/soundtrack-sprite.png );
+        position: absolute;
+        background-size: 100% 200%;
+        left: 0;
+        top: -8px; 
+    }
+
+
+    &.can-drop {
+        border: 1px solid limegreen;
+
+        .soundtrack-drop-icon {
+            background-position: 0px -100%;
+        }
+    }
+}

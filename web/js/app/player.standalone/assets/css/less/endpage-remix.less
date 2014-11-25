@@ -1,0 +1,93 @@
+@parentColor: #f06;
+@currentColor: yellow;
+
+.ZEEGA-remix-endpage {
+
+    display: block;
+    color: white;
+    position: absolute;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    display: none;
+    background: url(../img/tiny-stripes-dark.png);
+
+    .column {
+        float: left;
+
+        &.column-center {
+            margin: 0 20px;
+        }
+
+        .username {
+            margin-top: 10px;
+        }
+
+        .title {
+            margin-bottom: 10px;
+        }
+
+        &.project-current {
+            color: @currentColor;
+
+            .user-token {
+                border-color: @currentColor;
+            }
+        }
+
+        &.project-parent {
+            color: @parentColor;
+            .user-token {
+                border-color: @parentColor;
+            }
+        }
+
+        &.project-current,
+        &.project-root {
+            margin-top: 50px;
+        }
+    }
+
+    .remix-arrow {
+        height: 50px;
+        width: 50px;
+        background: url(../img/remix-arrow.png);
+        background-size: 100px 50px;
+        margin: 88px 10px;
+
+        &.gradient2 {
+            background-position: -50px 0;
+        }
+    }
+
+    .end-page-wrapper {
+        height: 200px;
+        width: 486px;
+        margin: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        text-align: center;
+        font-size: 12px;
+    }
+
+}
+
+.user-token {
+    
+    &.user-token-large {
+        height: 150px;
+        width: 150px;
+        border-radius: 150px;
+        border: 8px solid white;
+    }
+
+    &.user-token-medium {
+        height: 75px;
+        width: 75px;
+        border-radius: 150px;
+        border: 6px solid white;
+    }
+}

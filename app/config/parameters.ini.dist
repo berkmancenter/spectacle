@@ -1,0 +1,55 @@
+; These parameters can be imported into other config files
+; by enclosing the key with % (like %database_user%)
+; Comments start with ';', as in php.ini
+[parameters]
+    database_driver   = pdo_mysql                       ; database settings - http://symfony.com/doc/current/book/doctrine.html
+    database_host     = 
+    database_name     = 
+    database_user     = 
+    database_password =
+    database_type     = pgsql                           ; database type (hack for the session) - pgsql for postgres and mysql for mysql
+
+    mailer_transport  = smtp                            ; mailer settings - http://symfony.com/doc/current/cookbook/email/email.html
+    mailer_host       = localhost
+    mailer_user       =
+    mailer_password   =
+    mailer_encryption = ssl
+
+    locale            = en                              ; default language
+
+    secret            =                                 ; http://symfony.com/doc/current/reference/configuration/framework.html#secret
+
+    hostname          = //spectacle.example.com         ; host of this instance (e.g if running this instance from http://alpha.zeega.org/test/web, the host should be http://alpha.zeega.org)
+    directory         = /                        ; web path of this instance (e.g if running this instance from http://alpha.zeega.org/test/web, the directory should be test/web)
+    path		      	  = /var/www/spectacle/                   ; local path on the file system to this instance (?)
+    web_directory     = /var/www/spectacle/web                       ; local path on the file system to this instance (?)
+
+    solr_enabled  	  = false                           ; enable / disable solr
+    solr_host         = localhost                       ; host of the solr instance
+    solr_port         = 8080                            ; port of the solr instance
+    solr_path         = /solr                           ; web path to the solr instance
+
+    ga_tracking       = {something}                   ; google id for analytics
+
+    static_host       = http://spectacle.example.com
+
+    media_host        = /media/
+    event_logger_host = localhost
+    event_logger_host_web = localhost
+
+    facebook_appid = {something}
+    facebook_secret = {something}
+    mongodb_host = localhost
+    mongodb_database = local
+
+    mailer_email = 'somebody@spectacle.example.com'
+    id_host = localhost
+
+    twitter_consumer_key = {something}
+    twitter_consumer_secret = {something}
+    session_logger_host = localhost
+
+    session_memcached_host = 127.0.0.1
+    session_memcached_port = 11211
+    session_memcached_prefix = spec_sess
+    session_memcached_expire = 3600
