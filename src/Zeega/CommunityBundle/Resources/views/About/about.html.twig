@@ -1,6 +1,123 @@
 {% extends '::base.html.twig' %}
+{% set title = title | default('Unknown') %}
+{% set user_id = user_id | default(-1) %}
+{% set displayname = displayname | default('Unknown') %}
+{% set user_thumb = user_thumb | default('Unknown') %}
+{% set local_path = local_path | default('') %}
+{% set profile_id = profile_id | default( '' ) %}
+{% set tags = tags | default( '' ) %}
 
 {% block title %}About Spectacle{% endblock %}
+{% block stylesheets %}         
+  <style>
+  .content {
+    margin: 120px auto;
+    max-width: 940px;
+  }
+  a {
+    color: red;
+  }
+  </style>
+
+  {% if app.environment == 'prod' %}
+      <link rel="stylesheet" type="text/css" href="{{ asset('js/app/home/dist/release/index.css') }}">
+  {% else %}
+      <link rel="stylesheet" type="text/css" href="{{ asset('js/app/home/dist/debug/index.css') }}">
+
+  {% endif %}
+      
+  <!-- Including Google's Font -->
+  <link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Lato:400,700' rel='stylesheet' type='text/css'>
+
+{% endblock stylesheets %}
 {% block body %}
+  <header>
+<div class="cover-wrapper"><div class="home-cover"><div class="cover homepage">
+    <span class="tagline">
+      <h2>A SLIDESHOW MACHINE FOR HARVARD LIBRARY IMAGES</h2>
+    </span>
+          <a href="{{ path('ZeegaCommunityBundle_home') }}" data-bypass="true" class="ZEEGA-tab">
+              <span class="ZTab-logo"></span>
+          </a>
+
+            <div class="nav col-right navbar">
+            
+              <ul class="pull-right">
+                  <li>
+                      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        {% if user_id != profile_id %}
+                          <a href="{{ path('ZeegaCommunityBundle_dashboard') }}" class="logged-in-user" data-bypass="true" >
+                            <span class="profile-token" 
+                            {% if user_thumb != "" %}
+                                style="background-image: url({{user_thumb}});">
+                            {% endif %}
+                            </span></a>
+                         {% endif %}
+                      {% endif %}  
+                  </li>
+                  <li>
+                       {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                        <a class="btnz login" href="{{ path('fos_user_security_logout') }}">Logout</a> 
+                      {% else %}
+
+                          <a class="btnz login" href="{{ path('fos_user_security_login') }}">Login</a>
+                      
+                      {% endif %}
+                  </li>
+                  <li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+              <a class="btnz create-a-zeega bold-btnz" href="{{ path('ZeegaEditorBundle_new') }}" >New Slideshow</a>
+            {% else %}
+
+              <a class="btnz join bold-btnz" href="{{ path('fos_user_registration_register') }}" >Sign Up</a>
+            
+            {% endif %}
+            </li>
+                 
+              </ul>
+            </div>
+            
+
+            
+          
+
+</div>
+</div></div>
+</header>
+<div class="content">
+<h1>FAQ</h1>
+<h3>What does it do?</h3>
+
+<p>Harvard Spectacle is a slideshow generator that allows you to find images from Harvard library and museum collections and incorporate them into an online slideshow. Each image is linked to descriptive information about the image and the Harvard collection within which it resides. </p>
+
+<h3>Who is it for?</h3>
+
+<p>Harvard Spectacle may be used by anyone. We hope and expect that Harvard faculty, students, administrators, librarians and curators will all make use of the system, but we also hope that users beyond Harvard find the system useful and fun.</p>
+
+<h3>What sort of content is available?</h3>
+
+<p>For more than a decade Harvard libraries and museums have been making and collecting content that can be delivered online. Millions of public domain and Harvard-owned images can be included in slideshows -- images of photographs, book and manuscript pages, paintings, plant and animal specimens, art objects and ephemera. More.</p>
+
+<h3>Why did you build it?</h3>
+<p>We wanted an easy way to gather amazing images from Harvard collections and to share them online, and we had no trouble coming up with potential use cases:</p>
+<ul>
+<li>Faculty could create slideshows for classroom instruction, or link to them as a supplemental resources for students.</li>
+<li>Slideshows could be for public presentation by library and museum staff, university administrators and faculty.</li>
+<li>Slideshows could run on public kiosks and on idle workstations to raise local awareness of the riches of Harvard library collections.</li>
+<li>Online exhibits could be assembled quickly, without tasking web managers or developers.</li>
+<li>We hope that many users beyond Harvard will find interesting content that they can assemble to support their own teaching and learning; or just for the pleasure of discovering and sharing notable images.</li>
+</ul>
+
+<p>In addition to all of the reasons that inspired the development of Harvard Spectacle, we hope to hear that it finds uses and audiences that we’ve never considered.</p>
+
+<h3>May I re-use the Spectacle code?</h3>
+<p>Of course! Spectacle is opensource software and may be downloaded from <a href="https://github.com/berkmancenter/spectacle">Github</a>.</p>
+
+<h3>Feedback</h3>
+
+<p>Please let us know what you think, and if you’ve created a slideshow, please take a moment to tell us what motivated you to make one. Why did you do it? Who did you show it to or share it with? Please let us know by completing our <a href="http://goo.gl/forms/4uAdhNglGZ" target="_blank">feedback form</a>.</p>
+</div>
 	
 {% endblock %}				
