@@ -127,6 +127,7 @@ function( app, ItemView, Asker ) {
                 dataType: 'json',
                 success: function(data) { 
                     $('.upload-instructions').html("click here to upload a portfolio");
+                    app.zeega.getCurrentProject().trigger('upload');
                     app.zeega.getCurrentProject().fetch();
                 },
                 error: function( XHR, status, error ) {

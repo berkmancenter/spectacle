@@ -89,7 +89,7 @@ function( app, FrameView ) {
         renderSequenceFrames: function() {
             this.$(".frame-list").empty();
 
-            app.zeega.get("currentProject").pages.each(function( page ) {
+            app.zeega.getCurrentProject().pages.each(function( page ) {
                 if ( !page._frameView ) {
                     page._frameView = new FrameView({
                         model: page,

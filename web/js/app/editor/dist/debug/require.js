@@ -37960,7 +37960,8 @@ function( app, PageCollection, Layers, SequenceModel ) {
             }
         },
         initialize: function() {
-            this.on('change', this.onImport);
+            this.on('upload', this.onUpload);
+            this.on('change:frames', this.onChangeFrames);
         },
 
         url : function() {
@@ -38011,7 +38012,6 @@ function( app, PageCollection, Layers, SequenceModel ) {
         setPageOrder: function( order ) {
             this.sequence.save("frames", order );
         },
-
         
         setSoundtrack: function( item, soundtrackView, eventData ) {
             var newLayer;
@@ -38143,11 +38143,22 @@ function( app, PageCollection, Layers, SequenceModel ) {
 
         parse: function(data) { return data.project; },
 
+        onChangeFrames: function() {
+          if (this.get('import_in_progress')) {
+            this.onImport();
+            this.set('import_in_progress', false);
+          }
+        },
+
+        onUpload: function() {
+          this.set('import_in_progress', true);
+        },
+
         onImport: function() {
             //TODO: update uploads
             this._loadSequence();
             this._loadPages();
-            app.layout.frames.renderSequenceFrames();
+            app.layout.frames.afterRender();
         }
 
     });
@@ -40750,7 +40761,7 @@ function( app, FrameView ) {
         renderSequenceFrames: function() {
             this.$(".frame-list").empty();
 
-            app.zeega.get("currentProject").pages.each(function( page ) {
+            app.zeega.getCurrentProject().pages.each(function( page ) {
                 if ( !page._frameView ) {
                     page._frameView = new FrameView({
                         model: page,
@@ -43304,6 +43315,7 @@ function( app, ItemView, Asker ) {
                 dataType: 'json',
                 success: function(data) { 
                     $('.upload-instructions').html("click here to upload a portfolio");
+                    app.zeega.getCurrentProject().trigger('upload');
                     app.zeega.getCurrentProject().fetch();
                 },
                 error: function( XHR, status, error ) {
