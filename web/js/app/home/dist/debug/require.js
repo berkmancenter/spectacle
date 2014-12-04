@@ -457,9 +457,11 @@ return __p;
 this["JST"]["app/templates/sidebar.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="about" />\n    \n    <div class="logo-wrapper">\n        <span class="logo-mini"></span>\n    </div>\n\n    <div>\n        <h2>\n            is the easiest way to create and share interactive videos.\n            <a class="about-link" href="'+
+__p+='<div class="about" />\n    \n    <div class="logo-wrapper">\n        <span class="logo-mini"></span>\n    </div>\n\n    <div>\n        <h2>\n          <p>Convey an idea, or just share what you like.</p><p>Go ahead, put on a show.</p>\n          <a class="about-link" href="'+
 (path )+
-'about">Learn more.</a>\n        <h2>\n        <br>\n        <a class="btnz join-zeega" href="'+
+'about">Learn more</a> or \n          skim the <a class="about-link" href="'+
+(path )+
+'docs/Spectacle_User_Doc.pdf">User Guide</a>\n        <h2>\n        <br>\n        <a class="btnz join-zeega" href="'+
 (path )+
 'register" > Sign Up</a>\n    </div>\n\n</div>\n\n<div class="explore">\n    <!-- \n    <h2>Explore:</h2>\n    <ul>\n        <li>\n            <a data-bypass="true" href="'+
 (path )+
