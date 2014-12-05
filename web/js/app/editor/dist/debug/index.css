@@ -4823,6 +4823,15 @@ body {
 .socialz-harvard-oasis:hover {
   background-position: 0px -300px;
 }
+.socialz-harvard-lc {
+  background-position: 0 -330px;
+}
+.socialz-harvard-lc.socialz-white {
+  background-position: -30px -330px;
+}
+.socialz-harvard-lc:hover {
+  background-position: 0px -330px;
+}
 [class^="zsocial-"] {
   background-image: url('../img/social-sprites-20px.png');
   background-position: 0px 0px;

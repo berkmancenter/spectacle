@@ -114,6 +114,7 @@ Contributors
 
 * [Zeega](https://github.com/zeega)
 * [Justin Clark](https://github.com/jdcc)
+* Stand-in LibraryCloud icon by Dmitry Baranovskiy from the Noun Project
 
 License
 -------

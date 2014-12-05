@@ -24,9 +24,9 @@ function( app, MediaLibrary, SearchView ) {
                 this.model.getAPI().useBootstrapData();
 
             } else {
-                this.model.setAPI( "Via" );
-                this.$(".socialz-harvard-via").addClass("socialz-white");
-                this.$(".socialz-harvard-via").closest("a").addClass("active");
+                this.model.setAPI( "LibraryCloud" );
+                this.$(".socialz-harvard-lc").addClass("socialz-white");
+                this.$(".socialz-harvard-lc").closest("a").addClass("active");
                 this.model.getAPI().useBootstrapData();
             }
             this.setView();

@@ -641,7 +641,7 @@ return __p;
 this["JST"]["app/templates/media-drawer.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="media-drawer-controls ZEEGA-hmenu light img-tabs">\n    <ul class=\'pull-left\'>\n        \n        <li>\n            <a href="#" data-api = "Via" class="media-toggle"\n                title="Harvard\'s Via Images"\n                data-gravity="sw"\n            ><i class="socialz-harvard-via"></i></a>\n        </li>\n\n        <li>\n            <a href="#" data-api = "Oasis" class="media-toggle"\n                title="Harvard\'s Oasis Images"\n                data-gravity="sw"\n            ><i class="socialz-harvard-oasis"></i></a>\n        </li>\n\n        <li>\n            <a href="#" data-api = "Soundcloud" class="media-toggle"\n                title="sounds from SoundCloud"\n                data-gravity="sw"\n            ><i class="socialz-soundcloud"></i></a>\n        </li>\n\n      <!--\n        <li>\n            <a href="#" data-api="Tumblr" class="media-toggle"\n                title="GIFs and images from Tumblr"\n                data-gravity="sw"\n            ><i class="socialz-tumblr"></i></a>\n        </li>\n        <li>\n            <a href="#" data-api = "Instagram" class="media-toggle"\n                title="images from Instagram"\n                data-gravity="sw"\n            ><i class="socialz-instagram"></i></a>\n        </li>\n    -->\n\n        <li>\n            <a href="#" data-api = "Flickr" class="media-toggle"\n                title="images from Flickr"\n                data-gravity="sw"\n            ><i class="socialz-flickr"></i></a>\n        </li>\n\n        <li>\n            <a href="#" data-api = "Giphy" class="media-toggle"\n                title="GIFs from Giphy"\n                data-gravity="sw"\n            ><i class="socialz-giphy"></i></a>\n        </li>\n\n       \n      ';
+__p+='<div class="media-drawer-controls ZEEGA-hmenu light img-tabs">\n    <ul class=\'pull-left\'>\n        <li>\n            <a href="#" data-api = "LibraryCloud" class="media-toggle"\n                title="Harvard\'s LibraryCloud Images"\n                data-gravity="sw"\n            ><i class="socialz-harvard-lc"></i></a>\n        </li>\n        \n        <li>\n            <a href="#" data-api = "Via" class="media-toggle"\n                title="Harvard\'s Via Images"\n                data-gravity="sw"\n            ><i class="socialz-harvard-via"></i></a>\n        </li>\n\n        <li>\n            <a href="#" data-api = "Oasis" class="media-toggle"\n                title="Harvard\'s Oasis Images"\n                data-gravity="sw"\n            ><i class="socialz-harvard-oasis"></i></a>\n        </li>\n\n        <li>\n            <a href="#" data-api = "Soundcloud" class="media-toggle"\n                title="sounds from SoundCloud"\n                data-gravity="sw"\n            ><i class="socialz-soundcloud"></i></a>\n        </li>\n\n      <!--\n        <li>\n            <a href="#" data-api="Tumblr" class="media-toggle"\n                title="GIFs and images from Tumblr"\n                data-gravity="sw"\n            ><i class="socialz-tumblr"></i></a>\n        </li>\n        <li>\n            <a href="#" data-api = "Instagram" class="media-toggle"\n                title="images from Instagram"\n                data-gravity="sw"\n            ><i class="socialz-instagram"></i></a>\n        </li>\n    -->\n\n        <li>\n            <a href="#" data-api = "Flickr" class="media-toggle"\n                title="images from Flickr"\n                data-gravity="sw"\n            ><i class="socialz-flickr"></i></a>\n        </li>\n\n        <li>\n            <a href="#" data-api = "Giphy" class="media-toggle"\n                title="GIFs from Giphy"\n                data-gravity="sw"\n            ><i class="socialz-giphy"></i></a>\n        </li>\n\n       \n      ';
  if ( remix ) { 
 ;__p+='\n        <li>\n            <a href="#" data-api = "Remix" class="media-toggle"\n                title="Media from Remix"\n                data-gravity="sw"\n            ><i class="socialz-remix"></i></a>\n        </li>\n       ';
  } 
@@ -42642,6 +42642,194 @@ function( app, SearchModel ) {
 
 });
 
+define('modules/media-browser/api/librarycloud',[
+    "app",
+    "modules/media-browser/search-model",
+    "backbone"
+],
+
+function( app, SearchModel ) {
+
+
+    return SearchModel.extend({
+        
+        api: "LibraryCloud",
+        apiUrl: "http://api.lib.harvard.edu/v2/items.json?",
+
+        favUrl: "http://api.lib.harvard.edu/v2/items.json?resourceType=still%20image&isCollection=false&isOnline=true&q=Hiroshige&limit=10",
+        allowSearch: true,
+
+        defaults: {
+            urlArguments: {
+                resourceType: 'still image',
+                isCollection: 'false',
+                isOnline: 'true',
+                limit: "100",
+                start: '0',
+                q: 'Hiroshige'
+            },
+            title: "LibraryCloud",
+            placeholder: "search LibraryCloud",
+            headline: "Favorites from LibraryCloud",
+            searchQuery:  null
+        },
+
+        _initialize: function(){
+            var that = this;
+            that.mediaCollection._parse = function( res ) {
+
+                var items =[],
+                    item;
+
+                _.each( res.items, function( image ){
+                    if (!that.hasProperImages(image) || !that.isPublic(image)) {
+                        return;
+                    }
+
+                    item = {};
+                    item.id = that.getImageId(image),
+                    item.layer_type = "Image";
+                    item.media_type = "Image";
+                    item.archive = "LibraryCloud";
+                    item.title = image.mods.titleInfo.title;
+                    item.thumbnail_url = that.getThumbnailUrl(image);
+                    item.description = that.getDescription(image);
+                    item.uri = that.getFullUrl(image);
+                    item.attribution_uri = that.getAttributionUrl(image);
+                    item.media_user_realname = that.getCreator(image);
+                    items.push( item );
+                }, that);
+
+                if( res.pagination.start + res.pagination.limit < res.pagination.numFound ){
+                    this.more = true;
+                } else {
+                    this.more = false;
+                }
+
+                return items;
+            };
+
+        },
+
+        getDescription: function(image) {
+            if (!_.has(image.mods, 'note')) {
+                return;
+            }
+            if (_.isArray(image.mods.note)) {
+                return image.mods.note.join(' - ');
+            } else {
+                return image.mods.note;
+            }
+        },
+
+        getCreator: function(image) {
+            if (!_.has(image.mods, 'name')) {
+                return;
+            }
+
+            if (!_.isArray(image.mods.name)) {
+                image.mods.name = [image.mods.name];
+            }
+
+            var creator = _.find(image.mods.name, function(name) {
+                if (_.isArray(name.role.roleTerm)) {
+                    return _.contains(name.role.roleTerm, 'creator');
+                } else {
+                    return name.role.roleTerm === 'creator';
+                }
+            });
+
+            if (creator) {
+                return creator.namePart[0];
+            }
+        },
+
+        getImageId: function(image) {
+          return image.mods.recordInfo.recordIdentifier.source + '$' +
+            image.mods.recordInfo.recordIdentifier.$;
+        },
+
+        getThumbnailUrl: function(image) {
+            var loc = _.find(this.getUrlBlock(image), function(url) {
+                return url.displayLabel === 'Thumbnail';
+            });
+            return loc.$;
+        },
+
+        getFullUrl: function(image) {
+            var loc = _.find(this.getUrlBlock(image), function(url) {
+                return url.displayLabel === 'Full Image';
+            });
+            return loc.$;
+        },
+
+        splitId: function(image) {
+            var parts = image.mods.recordInfo.recordIdentifier.$.split(':');
+            return [parts[0].replace('_urn-3', ''), parts[1] + ':' + parts[2]];
+        },
+
+        getAttributionUrl: function(image) {
+            if (image.mods.recordInfo.recordIdentifier.source === 'MH:VIA') {
+                var parts = this.splitId(image);
+                return 'http://via.lib.harvard.edu/via/deliver/deepLinkItem?recordId=' +
+                    parts[0] + '&componentId=' + parts[1];
+            }
+        },
+
+        getUrlBlock: function(image) {
+            var block = _.find(image.mods.location, function(loc) {
+                return _.has(loc, 'url');
+            });
+            if (block) {
+                return block.url;
+            }
+        },
+
+        isPublic: function(image) { 
+            return _.some(this.getUrlBlock(image), function(url) {
+                return _.has(url, 'note') && url.note === 'unrestricted';
+            });
+        },
+
+        hasProperImages: function(image) {
+            var hasLocation = _.has(image.mods, 'location'),
+                urlBlock = this.getUrlBlock(image),
+                hasUrlBlock = hasLocation && !_.isUndefined(urlBlock),
+                hasUrls = hasUrlBlock && urlBlock.length >= 2,
+                hasFullImage = hasUrls && _.some(urlBlock, function(url) {
+                    return _.has(url, 'displayLabel') && url.displayLabel === 'Full Image';
+                }),
+                hasThumbnail = hasUrls && _.some(urlBlock, function(url) {
+                    return _.has(url, 'displayLabel') && url.displayLabel === 'Thumbnail';
+                }),
+                pass = hasFullImage && hasThumbnail;
+            return pass;
+        },
+
+        getQuery: function(){
+            return this.get("urlArguments").text;
+        },
+        _search: function( query ){
+
+            var args = this.get("urlArguments");
+            args.start = 0;
+            if (!_.isEmpty(query)) {
+                args.q = query;
+            }
+            this.set("urlArguments", args );
+            this.mediaCollection.fetch();
+  
+        },
+        _more: function(){
+            var args = this.get("urlArguments");
+            args.start += 100;
+            this.set("urlArguments", args );
+            this.mediaCollection.fetch({remove: false});
+        }
+    });
+
+});
+
 define('modules/media-browser/api/tumblr',[
     "app",
     "modules/media-browser/search-model",
@@ -43139,6 +43327,7 @@ define('modules/media-browser/media-library',[
     "app",
     "modules/media-browser/api/zeega",
     "modules/media-browser/api/flickr",
+    "modules/media-browser/api/librarycloud",
     "modules/media-browser/api/tumblr",
     "modules/media-browser/api/soundcloud",
     "modules/media-browser/api/giphy",
@@ -43148,12 +43337,13 @@ define('modules/media-browser/media-library',[
     "backbone"
 ],
 
-function( app, ZeegaSearch, FlickrSearch, TumblrSearch, SoundcloudSearch, GiphySearch, ViaSearch, OasisSearch, RemixSearch ) {
+function( app, ZeegaSearch, FlickrSearch, LibraryCloudSearch, TumblrSearch, SoundcloudSearch, GiphySearch, ViaSearch, OasisSearch, RemixSearch ) {
 
     return Backbone.Model.extend({
 
         defaults:{
             Flickr: new FlickrSearch(),
+            LibraryCloud: new LibraryCloudSearch(),
             Zeega: new ZeegaSearch(),
             Tumblr: new TumblrSearch(),
             Soundcloud: new SoundcloudSearch(),
@@ -44074,9 +44264,9 @@ function( app, MediaLibrary, SearchView ) {
                 this.model.getAPI().useBootstrapData();
 
             } else {
-                this.model.setAPI( "Via" );
-                this.$(".socialz-harvard-via").addClass("socialz-white");
-                this.$(".socialz-harvard-via").closest("a").addClass("active");
+                this.model.setAPI( "LibraryCloud" );
+                this.$(".socialz-harvard-lc").addClass("socialz-white");
+                this.$(".socialz-harvard-lc").closest("a").addClass("active");
                 this.model.getAPI().useBootstrapData();
             }
             this.setView();
