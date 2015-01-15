@@ -42770,7 +42770,17 @@ function( app, SearchModel ) {
 
         getAttributionUrl: function(image) {
             if (image.mods.recordInfo.recordIdentifier.source === 'MH:VIA') {
-                var parts = this.splitId(image);
+                var parts = this.splitId(image),
+                    olvToViaMap = {
+                      'W': 'olvwork',
+                      'G': 'olvgroup',
+                      'S': 'olvsite'
+                    };
+                _.each(olvToViaMap, function(v, k) {
+                  if (new RegExp('^' + k + '\\d+$').test(parts[0])) {
+                    parts[0] = parts[0].replace(k, v);
+                  }
+                });
                 return 'http://via.lib.harvard.edu/via/deliver/deepLinkItem?recordId=' +
                     parts[0] + '&componentId=' + parts[1];
             }
